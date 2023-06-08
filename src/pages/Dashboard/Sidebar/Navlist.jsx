@@ -17,7 +17,7 @@ import { AdminNavlistMobile, AdminNavlistPC } from "./AdminNavlist";
 import { StuNavlistMobile, StuNavlistPc } from "./StuNavlistPc";
 
 const Navlist = ({ handleDrawerToggle }) => {
-  const itemsList = (
+  const itemsListMobile = (
     <List>
       <DashCusNavMobile
         to="/dashboard"
@@ -25,8 +25,7 @@ const Navlist = ({ handleDrawerToggle }) => {
         icon={<DashboardIcon></DashboardIcon>}
         handleDrawerToggle={handleDrawerToggle}
       ></DashCusNavMobile>
-
-
+      
       <StuNavlistMobile handleDrawerToggle={handleDrawerToggle}></StuNavlistMobile>
       <InstructorNavlistMobile></InstructorNavlistMobile>
       <AdminNavlistMobile></AdminNavlistMobile>
@@ -49,6 +48,7 @@ const Navlist = ({ handleDrawerToggle }) => {
 
   const itemsListPC = (
     <List>
+      
       <DashCustomNavlink
         to="/dashboard"
         title="Dashboard"
@@ -74,7 +74,7 @@ const Navlist = ({ handleDrawerToggle }) => {
 
   return (
     <div className="">
-      <div className="block lg:hidden ">{itemsList}</div>
+      <div className="block lg:hidden ">{itemsListMobile}</div>
       <div className="hidden lg:block">{itemsListPC}</div>
     </div>
   );

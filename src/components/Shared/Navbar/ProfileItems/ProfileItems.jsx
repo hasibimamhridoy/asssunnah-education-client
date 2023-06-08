@@ -7,7 +7,7 @@ import { pink } from "@mui/material/colors";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const ProfileItems = () => {
-  const user = true;
+  const user = false;
 
   return (
     <div>
