@@ -1,179 +1,80 @@
-
 import HomeIcon from "@mui/icons-material/Home";
-import BlurOnIcon from "@mui/icons-material/BlurOn";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import GroupWorkIcon from "@mui/icons-material/GroupWork";
-import ContactsIcon from "@mui/icons-material/Contacts";
-import AutoStoriesIcon from "@mui/icons-material/AutoStories";
-import { List } from "@mui/material";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
-import { NavLink } from "react-router-dom";
+import { Badge, List } from "@mui/material";
 import DashCustomNavlink from "./DashCustomNavlink";
-
+import DashCusNavMobile from "./DashCusNavMobile";
+import { Link } from "react-router-dom";
+import { AiOutlineHeart } from "react-icons/ai";
+import DashboardIcon from "@mui/icons-material/Dashboard";
+import JoinInnerIcon from "@mui/icons-material/JoinInner";
+import PaidIcon from "@mui/icons-material/Paid";
+import HelpIcon from "@mui/icons-material/Help";
+import LogoutIcon from "@mui/icons-material/Logout";
+import {
+  InstructorNavlistMobile,
+  InstructorNavlistPC,
+} from "./InstructorNavlist";
+import { AdminNavlistMobile, AdminNavlistPC } from "./AdminNavlist";
+import { StuNavlistMobile, StuNavlistPc } from "./StuNavlistPc";
 
 const Navlist = ({ handleDrawerToggle }) => {
-
-  const student = true
-
-
   const itemsList = (
     <List>
-      <NavLink
-        to="/"
-        className={({ isActive, isPending }) =>
-          isPending
-            ? ""
-            : isActive
-            ? "transition duration-1000 text-[#20c997]"
-            : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-        }
-      >
-        <ListItem onClick={handleDrawerToggle} disablePadding>
-          <ListItemButton>
-            <div className="flex gap-5 justify-center items-center">
-              <HomeIcon />
-              <ListItemText primary='ড্যাশবোর্ড' />
-            </div>
-          </ListItemButton>
-        </ListItem>
-      </NavLink>
-      <NavLink
-        to="/about"
-        className={({ isActive, isPending }) =>
-          isPending
-            ? ""
-            : isActive
-            ? "transition duration-1000 text-[#20c997]"
-            : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-        }
-      >
-        <ListItem onClick={handleDrawerToggle} disablePadding>
-          <ListItemButton>
-            <div className="flex gap-5 justify-center items-center">
-              <DashboardIcon />
-              <ListItemText primary='বায়োডাটা ইডিট করুন' />
-            </div>
-          </ListItemButton>
-        </ListItem>
-      </NavLink>
-      <NavLink
-        to="/resume"
-        className={({ isActive, isPending }) =>
-          isPending
-            ? ""
-            : isActive
-            ? "transition duration-1000 text-[#20c997]"
-            : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-        }
-      >
-        <ListItem onClick={handleDrawerToggle} disablePadding>
-          <ListItemButton>
-            <div className="flex gap-5 justify-center items-center">
-              <BlurOnIcon />
-              <ListItemText primary='পছন্দের তালিকা' />
-            </div>
-          </ListItemButton>
-        </ListItem>
-      </NavLink>
+      <DashCusNavMobile
+        to="/dashboard"
+        title="Dashboard"
+        icon={<DashboardIcon></DashboardIcon>}
+        handleDrawerToggle={handleDrawerToggle}
+      ></DashCusNavMobile>
 
-      <NavLink
-        to="/portfolio"
-        className={({ isActive, isPending }) =>
-          isPending
-            ? ""
-            : isActive
-            ? "transition duration-1000 text-[#20c997]"
-            : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-        }
-      >
-        <ListItem onClick={handleDrawerToggle} disablePadding>
-          <ListItemButton>
-            <div className="flex gap-5 justify-center items-center">
-              <GroupWorkIcon />
-              <ListItemText primary='অপছন্দের তালিকা' />
-            </div>
-          </ListItemButton>
-        </ListItem>
-      </NavLink>
 
-      <NavLink
-        to="/blogs"
-        className={({ isActive, isPending }) =>
-          isPending
-            ? ""
-            : isActive
-            ? "transition duration-1000 text-[#20c997]"
-            : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-        }
-      >
-        <ListItem onClick={handleDrawerToggle} disablePadding>
-          <ListItemButton>
-            <div className="flex gap-5 justify-center items-center">
-              <AutoStoriesIcon />
-              <ListItemText primary='আমার ক্রয়সমূহ' />
-            </div>
-          </ListItemButton>
-        </ListItem>
-      </NavLink>
+      <StuNavlistMobile handleDrawerToggle={handleDrawerToggle}></StuNavlistMobile>
+      <InstructorNavlistMobile></InstructorNavlistMobile>
+      <AdminNavlistMobile></AdminNavlistMobile>
 
-      <NavLink
-        to="/contact"
-        className={({ isActive, isPending }) =>
-          isPending
-            ? ""
-            : isActive
-            ? "transition duration-1000 text-[#20c997]"
-            : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-        }
-      >
-        <ListItem onClick={handleDrawerToggle} disablePadding>
-          <ListItemButton>
-            <div className="flex gap-5 justify-center items-center">
-              <ContactsIcon />
-              <ListItemText primary='সাপোর্ট & রিপোর্ট' />
-            </div>
-          </ListItemButton>
-        </ListItem>
-      </NavLink>
-      <NavLink
-          to="/login"
-          className={({ isActive, isPending }) =>
-            isPending
-              ? ""
-              : isActive
-              ? "transition duration-1000 text-[#20c997]"
-              : "hover:transition hover:duration-1000 hover:text-[#20c997] text-gray-300"
-          }
-        >
-          <ListItem onClick={handleDrawerToggle} disablePadding>
-            <ListItemButton>
-              <div className="flex gap-5 justify-center items-center">
-                <ContactsIcon />
-                <ListItemText primary="Login" />
-              </div>
-            </ListItemButton>
-          </ListItem>
-        </NavLink>
+      <DashCusNavMobile
+        to="/dashboard/support"
+        title="Support & Report"
+        icon={<HelpIcon></HelpIcon>}
+        handleDrawerToggle={handleDrawerToggle}
+      ></DashCusNavMobile>
+
+      <DashCusNavMobile
+        to="/dashboard/logout"
+        title="Logout"
+        icon={<LogoutIcon></LogoutIcon>}
+        handleDrawerToggle={handleDrawerToggle}
+      ></DashCusNavMobile>
     </List>
   );
+
   const itemsListPC = (
-    <List >
-      <DashCustomNavlink to='/dashboard' title='Dashboard' icon={<HomeIcon></HomeIcon>}></DashCustomNavlink>
-      <DashCustomNavlink to='/dashboard/editProfile' title='Booked Class' icon={<HomeIcon></HomeIcon>}></DashCustomNavlink>
-      <DashCustomNavlink to='/dashboard/editProfile' title='Enrolled Class' icon={<HomeIcon></HomeIcon>}></DashCustomNavlink>
-      <DashCustomNavlink to='/dashboard/editProfile' title='Payment History' icon={<HomeIcon></HomeIcon>}></DashCustomNavlink>
-      <DashCustomNavlink to='/dashboard/editProfile' title='Support & Report' icon={<HomeIcon></HomeIcon>}></DashCustomNavlink>
-      <DashCustomNavlink to='/dashboard/editProfile' title='Logout' icon={<HomeIcon></HomeIcon>}></DashCustomNavlink>
-      
+    <List>
+      <DashCustomNavlink
+        to="/dashboard"
+        title="Dashboard"
+        icon={<DashboardIcon></DashboardIcon>}
+      ></DashCustomNavlink>
+
+      <StuNavlistPc></StuNavlistPc>
+      <InstructorNavlistPC></InstructorNavlistPC>
+      <AdminNavlistPC></AdminNavlistPC>
+
+      <DashCustomNavlink
+        to="/dashboard/support"
+        title="Support & Report"
+        icon={<HelpIcon></HelpIcon>}
+      ></DashCustomNavlink>
+      <DashCustomNavlink
+        to="/dashboard/logout"
+        title="Logout"
+        icon={<LogoutIcon></LogoutIcon>}
+      ></DashCustomNavlink>
     </List>
   );
 
   return (
     <div className="">
       <div className="block lg:hidden ">{itemsList}</div>
-
       <div className="hidden lg:block">{itemsListPC}</div>
     </div>
   );

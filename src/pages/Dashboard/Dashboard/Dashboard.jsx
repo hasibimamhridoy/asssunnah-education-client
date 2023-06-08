@@ -1,10 +1,9 @@
-import Navbar from "../../../components/Shared/Navbar/Navbar/Navbar";
-
+import React from 'react';
 
 const Dashboard = () => {
     return (
-        <div className="ml-48 font-[SolaimanLipi]">
-            <div className='hidden lg:block'><Navbar></Navbar></div>
+        <div className=''>
+            Primary Dashboard
         </div>
     );
 };

@@ -10,7 +10,7 @@ const DashCustomNavlink = ({to,title,icon:Icon}) => {
             ? ""
             : isActive
             ? "transition duration-1000 text-[#00ADEF] font-[Roboto]"
-            : "hover:transition hover:duration-1000 hover:text-[#00ADEF] text-gray-300 font-[SolaimanLipi]"
+            : "hover:transition hover:duration-1000 hover:text-[#00ADEF] text-gray-700 font-[Roboto]"
         }
       >
         <ListItem disablePadding>

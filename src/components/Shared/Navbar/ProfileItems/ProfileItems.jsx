@@ -15,7 +15,7 @@ const ProfileItems = () => {
         {user ? (
           <div className="flex items-center justify-between gap-5">
             
-            <Link to='/dashboard/favorites'>
+            <Link to='/dashboard/bookedClass'>
             <Badge badgeContent={4} color="primary">
               <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
                 <AiOutlineHeart></AiOutlineHeart>
@@ -37,7 +37,7 @@ const ProfileItems = () => {
               </Avatar>
             </Link>
 
-            <Link to='/dashboard' className="lg:hidden mb-1">
+            <Link to='/dashboard/student' className="lg:hidden mb-1">
               <Avatar sx={{ bgcolor: "#00ADEF" }}>
                 <AccountCircleIcon></AccountCircleIcon>
               </Avatar>

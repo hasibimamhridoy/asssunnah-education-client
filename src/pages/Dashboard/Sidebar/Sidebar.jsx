@@ -19,10 +19,10 @@ function Sidebar(props) {
 
   console.log(mobileOpen);
   const drawer = (
-    <div className="nav-clr h-full font-[SolaimanLipi]">
+    <div className="bg-gray-50 h-full font-[Roboto]">
       <img
         className="h-40 w-40 rounded-full border border-solid block mx-auto my-5"
-        // src={profilePic}
+        src="https://scontent.fcla4-1.fna.fbcdn.net/v/t39.30808-6/311157526_589456529637239_5236811046150183925_n.jpg?stp=cp6_dst-jpg&_nc_cat=100&ccb=1-7&_nc_sid=09cbfe&_nc_eui2=AeFRE6HAgoBOBDNQSzY2sEDv8sEaWNqzBGzywRpY2rMEbEnWuzgh6PKoop1jScwYz_ossqukPbIyFWqBfkxzGTGl&_nc_ohc=KlIYkOO9UDgAX_SEpr5&_nc_ht=scontent.fcla4-1.fna&oh=00_AfBlDBBw61rP8MpiI2UpvoOKxhO4pIHUksyKZxscXFWn4w&oe=648721D3"
         alt=""
       />
       <Navlist
