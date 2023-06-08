@@ -17,7 +17,7 @@ const ProfileItems = () => {
             
             <Link to='/dashboard/favorites'>
             <Badge badgeContent={4} color="primary">
-              <li className="text-2xl hover:text-[#E2136E] hover:transition hover:duration-500 cursor-pointer">
+              <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
                 <AiOutlineHeart></AiOutlineHeart>
               </li>
             </Badge></Link>
@@ -25,20 +25,20 @@ const ProfileItems = () => {
             <Link className="hidden lg:block" to="/dashboard">
               <button
                 type="button"
-                className="text-white bg-[#E2136E] hover:transition hover:duration-500 cursor-pointer hover:bg-[#183f8cde] rounded-full text-sm px-3 py-1 text-center mb-2"
+                className="text-white bg-[#00ADEF] hover:transition hover:duration-500 cursor-pointer hover:bg-[#183f8cde] rounded-full text-sm px-3 py-1 text-center mb-2"
               >
                 Dashboard
               </button>
             </Link>
 
             <Link className="hidden lg:block mb-1.5" to="/dashboard">
-            <Avatar sx={{ bgcolor: pink[500] }}>
+            <Avatar sx={{ bgcolor: "#00ADEF" }}>
                 <AccountCircleIcon></AccountCircleIcon>
               </Avatar>
             </Link>
 
             <Link to='/dashboard' className="lg:hidden mb-1">
-              <Avatar sx={{ bgcolor: pink[500] }}>
+              <Avatar sx={{ bgcolor: "#00ADEF" }}>
                 <AccountCircleIcon></AccountCircleIcon>
               </Avatar>
             </Link>
@@ -47,7 +47,7 @@ const ProfileItems = () => {
           <Link to="/login">
             <button
               type="button"
-              className="text-white bg-[#E2136E] rounded-full text-sm px-3 py-1 text-center mr-2 mb-2"
+              className="text-white bg-[#00ADEF] rounded-full text-sm px-3 py-1 text-center mr-2 mb-2"
             >
               Login
             </button>

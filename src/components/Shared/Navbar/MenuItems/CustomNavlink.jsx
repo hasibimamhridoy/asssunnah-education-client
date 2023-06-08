@@ -7,10 +7,10 @@ const CustomNavlink = ({ to, title }) => {
       <NavLink
         to={to}
         className={({ isActive, isPending }) =>
-          isPending ? "pending" : isActive ? "text-[#E2136E]" : ""
+          isPending ? "pending" : isActive ? "text-[#00ADEF]" : ""
         }
       >
-        <li className="hover:text-[#E2136E] hover:transition hover:duration-500 cursor-pointer">
+        <li className="hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
           {title}
         </li>
       </NavLink>
