@@ -73,3 +73,4 @@ export const updateClass = async (classId,updateClassInformation) => {
     return data
 
 }
+

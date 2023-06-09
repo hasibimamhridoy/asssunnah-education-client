@@ -11,7 +11,6 @@ const useInstructorsClassess = () => {
         enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure(`/instructor/myAddeddClass/${user?.email}`)
-            console.log('res from axios', res)
             return res.data;
         },
     })

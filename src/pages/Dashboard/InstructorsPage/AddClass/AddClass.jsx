@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { addClass } from "../../../../api/manageClass";
 import { imageUpload } from "../../../../api/utils";
 import Button from "../../../../components/Button/Button";
@@ -16,15 +17,23 @@ const AddClass = () => {
     const available_seats = parseFloat(form.seats.value)
     const status = 'pending'
     const feedback = ''
+    const total_enrolled = 0
     const image = e.target.image.files[0]
 
     imageUpload(image)
     .then(res=>{
         const image = res.data.url
-        const addClassInformation = {class_name,instructor_name,instructor_email,price,available_seats,status,feedback,image}
+        const addClassInformation = {class_name,instructor_name,instructor_email,price,available_seats,status,feedback,image,total_enrolled}
         addClass(addClassInformation)
         .then(res =>{
             console.log(res);
+            Swal.fire({
+              position: 'top-end',
+              icon: 'success',
+              title: 'Class Addedd',
+              showConfirmButton: false,
+              timer: 1500
+            })
         })
 
     })
@@ -118,7 +127,7 @@ const AddClass = () => {
                   id="price"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   placeholder="$2999"
-                  required=""
+                  required
                 />
               </div>
 

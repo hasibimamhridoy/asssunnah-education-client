@@ -11,7 +11,6 @@ const useClassess = () => {
         enabled: !loading,
         queryFn: async () => {
             const res = await axiosSecure(`/admin/classess`)
-            console.log('res from axios', res)
             return res.data;
         },
     })

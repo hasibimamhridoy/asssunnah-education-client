@@ -1,0 +1,118 @@
+import { useEffect, useState } from "react";
+import useIsApprovedClassess from "../../../hooks/useIsApprovedClass";
+import { useNavigate } from "react-router-dom";
+import { addToBooked, isAlreadyBooked } from "../../../api/addTobooked";
+import useAuth from "../../../hooks/useAuth";
+const ClassCard = () => {
+  const navigate = useNavigate();
+  const [disabledIds, setDisabledIds] = useState([]);
+  const { user } = useAuth();
+  const [isApprovedClassess, refetch] = useIsApprovedClassess();
+  const [selectedValue, setSelectedValue] = useState(user?.email);
+
+  useEffect(() => {
+    isAlreadyBooked(user?.email).then((res) => {
+      setDisabledIds(res);
+    });
+  }, [user?.email, selectedValue]);
+
+  console.log(disabledIds);
+
+  const handleCheckboxChange = (event) => {
+    setSelectedValue(event.target.checked);
+    const bookedClassInformation = event.target.value;
+
+    if (selectedValue === false) {
+      return navigate("/login");
+    }
+
+    addToBooked(bookedClassInformation).then((res) => {
+      console.log(res);
+      if (res.acknowledged) {
+        refetch();
+        setSelectedValue(user?.email)
+      }
+    });
+  };
+
+  return (
+    <>
+      {isApprovedClassess.map((singleClass) => {
+        const {
+          available_seats,
+          class_name,
+          image,
+          instructor_email,
+          instructor_name,
+          price,
+          _id,
+        } = singleClass;
+
+        const userEmail = user?.email;
+
+        const bookedClassInfo = {
+          available_seats,
+          class_name,
+          image,
+          instructor_email,
+          instructor_name,
+          price,
+          courseId: _id,
+          userEmail,
+        };
+
+        return (
+          <div
+            key={_id}
+            className=" mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
+          >
+            <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+              <img src={image} alt="img-blur-shadow" />
+            </div>
+            <div className="px-6 mt-7 mb-3">
+              <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                {class_name}
+              </h5>
+
+              <p className="block font-sans text-gray-500 text-base font-light leading-relaxed text-inherit antialiased">
+                {instructor_name}
+              </p>
+              <p className="block text-black text-base font-light leading-relaxed text-inherit antialiased">
+                Email: {instructor_email}
+              </p>
+
+              <div className="mt-4">
+                <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  Price: {price} Tk.
+                </span>
+                <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  Available Seats: {available_seats}
+                </span>
+              </div>
+
+              <span className="flex items-center mt-5 space-x-2">
+                <input
+                  disabled={disabledIds.includes(_id)}
+                  onChange={handleCheckboxChange}
+                  id="bordered-checkbox-1"
+                  type="checkbox"
+                  value={JSON.stringify(bookedClassInfo)}
+                  name="bordered-checkbox"
+                  className={`w-4  h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600`}
+                />
+                {disabledIds.includes(_id) && (
+                  <span className="underline font-[Roboto]">
+                    Go to booked item
+                  </span>
+                )}
+                {!disabledIds.includes(_id) && <span>Add to Booked</span>}
+              </span>
+            </div>
+          </div>
+        );
+      })}
+    </>
+  );
+};
+
+export default ClassCard;

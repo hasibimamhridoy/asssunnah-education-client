@@ -1,10 +1,12 @@
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import { addClass, updateClass } from "../../../../api/manageClass";
 import { imageUpload } from "../../../../api/utils";
 import Button from "../../../../components/Button/Button";
 import useAuth from "../../../../hooks/useAuth";
+import Swal from "sweetalert2";
 
 const UpdateClass = () => {
+    const navigate = useNavigate()
   const { user } = useAuth();
   const {id} = useParams()
   const singleClass =  useLoaderData()
@@ -42,6 +44,16 @@ const UpdateClass = () => {
         
         .then(res =>{
             console.log(res);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Your work has been saved',
+                showConfirmButton: false,
+                timer: 1500
+              })
+
+              navigate('/dashboard/instructor/myClassess')
+
         })
 
     })
@@ -122,6 +134,7 @@ const UpdateClass = () => {
                   className="block w-full text-s p-2 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="file_input"
                   type="file"
+                  required
                 />
               </div>
               <div className="w-full">
