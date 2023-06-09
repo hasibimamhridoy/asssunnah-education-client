@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../../../../ContextProvider/AuthContextProvider";
 import DeleteIcon from '@mui/icons-material/Delete';
+import useUsers from "../../../../hooks/useUsers";
 
 const ManageUsers = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
+  const [users,refetch] = useUsers()
+  console.log(users);
   return (
     <div className="">
       <h1 className="text-center text-3xl">Manage Users</h1>
