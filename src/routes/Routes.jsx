@@ -18,6 +18,7 @@ import ManageUsers from "../pages/Dashboard/AdminPage/ManageUsers/ManageUsers";
 import Login from "../pages/LoginRegister/Login/Login";
 import Register from "../pages/LoginRegister/Register/Register";
 import SendFeedback from "../pages/Dashboard/AdminPage/ManageClass/SendFeedback";
+import UpdateClass from "../pages/Dashboard/InstructorsPage/UpdateClass/UpdateClass";
 
 const router = createBrowserRouter([
     {
@@ -98,6 +99,11 @@ const router = createBrowserRouter([
           {
               path:`/dashboard/manageUsers/sendFeedback/:id`,
               element:<SendFeedback></SendFeedback>
+          },
+          {
+              path:`/dashboard/instructor/update/:id`,
+              element:<UpdateClass></UpdateClass>,
+              loader: ({params})=>fetch(`http://localhost:5000/instructor/classess/${params.id}`)
           },
           
         ]

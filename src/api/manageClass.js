@@ -57,3 +57,19 @@ export const sendFeedback = async (classId,feedback) => {
     return data
 
 }
+
+
+export const updateClass = async (classId,updateClassInformation) => {
+
+    const url = `${import.meta.env.VITE_API_URL}/instructors/classess/${classId}`
+    const response = await fetch(url, {
+        method: 'PUT',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(updateClassInformation),
+    })
+    const data = await response.json()
+    return data
+
+}
