@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import useIsApprovedClassess from "../../../hooks/useIsApprovedClass";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addToBooked, isAlreadyBooked } from "../../../api/addTobooked";
 import useAuth from "../../../hooks/useAuth";
+import useInstructor from "../../../hooks/useInstructor";
+import useAdmin from "../../../hooks/useAdmin";
 const ClassCard = () => {
   const navigate = useNavigate();
   const [disabledIds, setDisabledIds] = useState([]);
   const { user } = useAuth();
   const [isApprovedClassess, refetch] = useIsApprovedClassess();
   const [selectedValue, setSelectedValue] = useState(user?.email);
+
+  const [isInstructor] = useInstructor()
+  const [isAdmin] = useAdmin()
 
   useEffect(() => {
     isAlreadyBooked(user?.email).then((res) => {
@@ -19,12 +24,11 @@ const ClassCard = () => {
   console.log(disabledIds);
 
   const handleCheckboxChange = (event) => {
+    if (!user) {
+        return navigate("/login");
+      }
     setSelectedValue(event.target.checked);
     const bookedClassInformation = event.target.value;
-
-    if (selectedValue === false) {
-      return navigate("/login");
-    }
 
     addToBooked(bookedClassInformation).then((res) => {
       console.log(res);
@@ -92,7 +96,7 @@ const ClassCard = () => {
 
               <span className="flex items-center mt-5 space-x-2">
                 <input
-                  disabled={disabledIds.includes(_id)}
+                  disabled={disabledIds.includes(_id) || isAdmin || isInstructor}
                   onChange={handleCheckboxChange}
                   id="bordered-checkbox-1"
                   type="checkbox"
@@ -101,11 +105,12 @@ const ClassCard = () => {
                   className={`w-4  h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600`}
                 />
                 {disabledIds.includes(_id) && (
-                  <span className="underline font-[Roboto]">
-                    Go to booked item
-                  </span>
+                  <Link to='/dashboard/bookedClass'><span className="hover:underline cursor-pointer font-[Roboto]">
+                  Go to booked item
+                </span></Link>
                 )}
                 {!disabledIds.includes(_id) && <span>Add to Booked</span>}
+                
               </span>
             </div>
           </div>

@@ -6,8 +6,8 @@ const useIsApprovedClassess = () => {
     const { user, loading } = useAuth();
 
     const { refetch, data: isApprovedClassess = [] } = useQuery({
-        queryKey: ['isApprovedClassess', user?.email],
-        enabled: !loading,
+        queryKey: ['isApprovedClassess'],
+        // enabled: !loading,
         queryFn: async () => {
             const res = await axios.get(`${import.meta.env.VITE_API_URL}/classess`)
             return res.data;
