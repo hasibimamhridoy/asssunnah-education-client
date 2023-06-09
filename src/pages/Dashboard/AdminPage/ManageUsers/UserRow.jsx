@@ -6,7 +6,6 @@ import {
 } from "../../../../api/makeRole";
 import useUsers from "../../../../hooks/useUsers";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useState } from "react";
 const UserRow = () => {
   const [users, refetch] = useUsers();
 
