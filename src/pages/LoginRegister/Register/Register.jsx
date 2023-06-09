@@ -4,35 +4,48 @@ import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import { getAuth, updateProfile } from "firebase/auth";
 import GoogleIcon from "@mui/icons-material/Google";
 import { app } from "../../../firebase/FirebaseConfig/firebaseConfig";
-import { useForm } from 'react-hook-form';
-
+import { useForm } from "react-hook-form";
+import { imageUpload } from "../../../api/utils";
+import { saveUser } from "../../../api/auth";
+import useAuth from "../../../hooks/useAuth";
 
 const auth = getAuth(app);
 const Register = () => {
+  const { handleManualRegister, handleUpdateProfile } = useAuth();
+  const [imgUrl, setImgUrl] = useState("");
+
   const location = useLocation();
   const fromPath = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
   const [error, setError] = useState("");
-  const { register, handleSubmit, formState: { errors } } = useForm();
   const {
-    handleManualRegister,
-    handleGoogleRegister,
-    handleGithubRegister,
-    handleUpdateProfile,
-    user,
-    handleManualLogout,
-  } = useContext(AuthContext);
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  
-  const onSubmit = data => {
-    console.log(data);
+  const onSubmit = (data) => {
+    const { name, email, password,ccpassword } = data;
+    const image = data.picture[0];
+
+    if (password !== ccpassword) {
+      return setError("Password Do not match");
+    }
+
+    imageUpload(image).then((data) => {
+      console.log(data);
+      handleManualRegister(email, password).then((result) => {
+        console.log(result);
+        handleUpdateProfile(name, data.data.url).
+        then((res) =>
+          console.log(res)
+        );
+      })
+      })
   };
   console.log(errors);
 
-
-
-
-
+  console.log(error);
 
   const handleGoogle = () => {
     handleGoogleRegister()
@@ -55,40 +68,122 @@ const Register = () => {
       <p className="mt-1 block font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
         Enter your details to register.
       </p>
-      <form onSubmit={handleSubmit(onSubmit)} className="mt-8 mb-2 lg:w-80 w-full">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="mt-8 mb-2 lg:w-80 w-full"
+      >
         <div className="mb-4 flex flex-col gap-6">
           <div className="relative h-11 w-full min-w-[200px]">
-            <input {...register("name", { required: true })} 
+            <input
+              {...register("name", { required: true })}
               className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeholder=" "
             />
+            {errors.name && (
+              <span className="text-red-600 text-[14px] p-1">
+                Name is required
+              </span>
+            )}
             <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
               Name
             </label>
           </div>
           <div className="relative h-11 w-full min-w-[200px]">
             <input
-            {...register("email", { required: true })} 
+              {...register("email", { required: true })}
               className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
-              placeholder="Email"
+              placeholder=" "
             />
+            {errors.email && (
+              <span className="text-red-600 text-[14px] p-1">
+                Email is required
+              </span>
+            )}
             <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
               Email
             </label>
           </div>
-          <div className="relative h-11 w-full min-w-[200px]">
+
+          <div className="relative mt-3 h-11 w-full min-w-[200px]">
             <input
-            {...register("password", { required: true })} 
+              {...register("picture", { required: true })}
+              type="file"
+              className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              placeholder=" "
+            />
+
+            {errors.picture && (
+              <span className="text-red-600 text-[14px] p-1">
+                Pictured is required
+              </span>
+            )}
+            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+              Upload Image
+            </label>
+          </div>
+
+          <div className="relative mt-3 h-11 w-full min-w-[200px]">
+            <input
+              {...register("password", {
+                required: true,
+                minLength: 6,
+                maxLength: 20,
+                pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+              })}
               type="password"
               className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
               placeholder=" "
             />
+            {errors.password?.type === "required" && (
+              <p className="text-red-600 text-[14px] p-1 ">
+                Password is required
+              </p>
+            )}
+            {errors.password?.type === "minLength" && (
+              <p className="text-red-600 text-[14px] p-1">
+                Password must be 6 characters
+              </p>
+            )}
+            {errors.password?.type === "maxLength" && (
+              <p className="text-red-600 text-[14px] p-1">
+                Password must be less than 20 characters
+              </p>
+            )}
+            {errors.password?.type === "pattern" && (
+              <p className="text-red-600 text-[14px] p-1">
+                Password must have one Uppercase one lower case, one number and
+                one special character.
+              </p>
+            )}
             <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
               Password
             </label>
           </div>
+          <div className="relative mt-3 h-11 w-full min-w-[200px]">
+            <input
+              {...register("ccpassword", {
+                required: true,
+                minLength: 6,
+                maxLength: 20,
+                pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+              })}
+              type="password"
+              className="peer h-full w-full rounded-md border border-blue-gray-200 border-t-transparent bg-transparent px-3 py-3 font-sans text-sm font-normal text-blue-gray-700 outline outline-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 focus:border-2 focus:border-pink-500 focus:border-t-transparent focus:outline-0 disabled:border-0 disabled:bg-blue-gray-50"
+              placeholder=" "
+            />
+            
+            <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
+              Password
+            </label>
+          </div>
+          
         </div>
-        <div className="inline-flex items-center">
+      
+              <p className="text-red-600 text-[14px] p-1">
+                {error}
+              </p>
+         
+        <div className="inline-flex items-center mt-7">
           <label
             className="relative -ml-2.5 flex cursor-pointer items-center rounded-full p-3"
             htmlFor="checkbox"
@@ -140,7 +235,8 @@ const Register = () => {
         </button>
         <p className="mt-4 block text-center font-sans text-base font-normal leading-relaxed text-gray-700 antialiased">
           Already have an account?
-          <Link to='/login'
+          <Link
+            to="/login"
             className="font-medium text-[#00ADEF] transition-colors hover:text-blue-700"
           >
             Sign In
