@@ -1,4 +1,4 @@
-import { addClass } from "../../../../api/addClass";
+import { addClass } from "../../../../api/manageClass";
 import { imageUpload } from "../../../../api/utils";
 import Button from "../../../../components/Button/Button";
 import useAuth from "../../../../hooks/useAuth";
