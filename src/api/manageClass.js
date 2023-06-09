@@ -42,3 +42,18 @@ export const deniedClass = async classId => {
     return data
 
 }
+
+export const sendFeedback = async (classId,feedback) => {
+
+    const url = `${import.meta.env.VITE_API_URL}/admin/instructors/classess/${classId}`
+    const response = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({feedback:feedback}),
+    })
+    const data = await response.json()
+    return data
+
+}

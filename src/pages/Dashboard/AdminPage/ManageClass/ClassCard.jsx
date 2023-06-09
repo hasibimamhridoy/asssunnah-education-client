@@ -5,6 +5,7 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Swal from "sweetalert2";
 import { approvedClass, deniedClass } from "../../../../api/manageClass";
+import { Link } from "react-router-dom";
 
 const ClassCard = () => {
   const [classess, refetch] = useClassess();
@@ -108,9 +109,14 @@ const ClassCard = () => {
             <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
               Available Seats:  {available_seats}
             </span>
+
+            
              </div>
             </div>
 
+            {feedback && <span className="bg-purple-700  ml-6 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+              Feedback:  {feedback}
+            </span>}
             
 
             <div className="flex px-6 mt-3 mb-7 gap-5">
@@ -138,6 +144,7 @@ const ClassCard = () => {
               >
                 <HighlightOffIcon></HighlightOffIcon>
               </button>
+              <Link to={`/dashboard/manageUsers/sendFeedback/${_id}`}>
               <button
                 className="select-none rounded-lg bg-yellow-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button"
@@ -145,6 +152,7 @@ const ClassCard = () => {
               >
                 <FeedbackIcon></FeedbackIcon>
               </button>
+              </Link>
             </div>
           </div>
         );

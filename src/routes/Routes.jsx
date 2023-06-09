@@ -17,6 +17,7 @@ import ManageClass from "../pages/Dashboard/AdminPage/ManageClass/ManageClass";
 import ManageUsers from "../pages/Dashboard/AdminPage/ManageUsers/ManageUsers";
 import Login from "../pages/LoginRegister/Login/Login";
 import Register from "../pages/LoginRegister/Register/Register";
+import SendFeedback from "../pages/Dashboard/AdminPage/ManageClass/SendFeedback";
 
 const router = createBrowserRouter([
     {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
           {
               path:'/dashboard/manageUsers',
               element:<ManageUsers></ManageUsers>
+          },
+          {
+              path:`/dashboard/manageUsers/sendFeedback/:id`,
+              element:<SendFeedback></SendFeedback>
           },
           
         ]
