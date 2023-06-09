@@ -10,6 +10,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { app } from "../firebase/FirebaseConfig/firebaseConfig";
+import axios from "axios";
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -48,23 +49,16 @@ const AuthContextProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
 
-      // if (currentUser) {
-      //   const email = currentUser.email;
-      //   fetch("https://cooking-light-server-hasibimamhridoy.vercel.app/jwt", {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //     body: JSON.stringify({ email }),
-      //   })
-      //     .then((res) => res.json())
-      //     .then((data) => {
-      //       console.log(data);
-      //       localStorage.setItem("cooking-token", data.token);
-      //     });
-      // } else {
-      //   localStorage.removeItem("cooking-token");
-      // }
+      if (currentUser) {
+        const email = currentUser.email;
+        axios.post(`http://localhost:5000/jwt`,{email})
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("ass-sunnah-token", data.data.token);
+          });
+      } else {
+        localStorage.removeItem("ass-sunnah-token");
+      }
 
       setLoading(false);
     });

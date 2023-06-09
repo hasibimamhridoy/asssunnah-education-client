@@ -15,8 +15,12 @@ import {
 } from "./InstructorNavlist";
 import { AdminNavlistMobile, AdminNavlistPC } from "./AdminNavlist";
 import { StuNavlistMobile, StuNavlistPc } from "./StuNavlistPc";
+import useAuth from "../../../hooks/useAuth";
 
 const Navlist = ({ handleDrawerToggle }) => {
+
+  const {handleManualLogout} = useAuth()
+
   const itemsListMobile = (
     <List>
       <DashCusNavMobile
@@ -50,7 +54,7 @@ const Navlist = ({ handleDrawerToggle }) => {
     <List>
       
       <DashCustomNavlink
-        to="/dashboard"
+        to="/"
         title="Dashboard"
         icon={<DashboardIcon></DashboardIcon>}
       ></DashCustomNavlink>
@@ -64,11 +68,12 @@ const Navlist = ({ handleDrawerToggle }) => {
         title="Support & Report"
         icon={<HelpIcon></HelpIcon>}
       ></DashCustomNavlink>
-      <DashCustomNavlink
-        to="/dashboard/logout"
+      
+      <div onClick={handleManualLogout}><DashCustomNavlink
+        
         title="Logout"
         icon={<LogoutIcon></LogoutIcon>}
-      ></DashCustomNavlink>
+      ></DashCustomNavlink></div>
     </List>
   );
 

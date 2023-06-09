@@ -5,9 +5,11 @@ import Badge from "@mui/material/Badge";
 import { Avatar } from "@mui/material";
 import { pink } from "@mui/material/colors";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import useAuth from "../../../../hooks/useAuth";
 
 const ProfileItems = () => {
-  const user = false;
+  const {user} = useAuth()
+  // const user = false;
 
   return (
     <div>

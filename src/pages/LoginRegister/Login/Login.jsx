@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../ContextProvider/AuthContextProvider";
 import GoogleIcon from "@mui/icons-material/Google";
 import Button from "../../../components/Button/Button";
+import { saveUser } from "../../../api/auth";
 
 const Login = () => {
   const { handleManualLogin, handleGoogleRegister, user } =
@@ -17,6 +18,7 @@ const Login = () => {
     handleGoogleRegister()
       .then((result) => {
         const user = result.user;
+        saveUser(user)
         navigate(fromPath);
       })
       .catch((error) => {
