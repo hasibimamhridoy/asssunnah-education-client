@@ -17,7 +17,7 @@ const googleProvider = new GoogleAuthProvider();
 const auth = getAuth(app);
 export const AuthContext = createContext(null);
 const AuthContextProvider = ({ children }) => {
-  const [user, setUser] = useState('hasib imam');
+  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const handleManualRegister = (email, pass) => {
@@ -40,31 +40,38 @@ const AuthContextProvider = ({ children }) => {
   };
 
   const handleUpdateProfile = (name, photo) => {
+    setLoading(true);
+
+
     return updateProfile(auth.currentUser, {
         displayName: name, photoURL: photo
     });
 }
 
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+useEffect(() => {
+  const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
+      console.log('current user', currentUser);
 
-      if (currentUser) {
-        const email = currentUser.email;
-        axios.post(`http://localhost:5000/jwt`,{email})
-          .then((data) => {
-            console.log(data);
-            localStorage.setItem("ass-sunnah-token", data.data.token);
-          });
-      } else {
-        localStorage.removeItem("ass-sunnah-token");
+      // get and set token
+      if(currentUser){
+          axios.post('http://localhost:5000/jwt', {email: currentUser.email})
+          .then(data =>{
+              console.log(data.data.token)
+              localStorage.setItem('access-token', data.data.token)
+              setLoading(false);
+          })
+      }
+      else{
+          localStorage.removeItem('access-token')
       }
 
-      setLoading(false);
-    });
-
-    return () => unSubscribe();
-  }, []);
+      
+  });
+  return () => {
+      return unsubscribe();
+  }
+}, [])
 
   const authInfo = {
     user,

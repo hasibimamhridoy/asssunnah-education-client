@@ -3,13 +3,17 @@ import DashCustomNavlink from './DashCustomNavlink';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
 import DashCusNavMobile from './DashCusNavMobile';
+import useAdmin from '../../../hooks/useAdmin';
+import useInstructor from '../../../hooks/useInstructor';
 
 export const AdminNavlistPC = () => {
-    const admin = true
+    const [isAdmin] = useAdmin()
+    console.log(isAdmin);
+   
     return (
         <div>
-            {admin && <DashCustomNavlink to='/dashboard/manageClass' title='Manage Class' icon={<LocalLibraryIcon></LocalLibraryIcon>}></DashCustomNavlink>}
-            {admin && <DashCustomNavlink to='/dashboard/manageUsers' title='Manage Users' icon={<ManageAccountsIcon></ManageAccountsIcon>}></DashCustomNavlink>}
+            {isAdmin && <DashCustomNavlink to='/dashboard/manageClass' title='Manage Class' icon={<LocalLibraryIcon></LocalLibraryIcon>}></DashCustomNavlink>}
+            {isAdmin && <DashCustomNavlink to='/dashboard/manageUsers' title='Manage Users' icon={<ManageAccountsIcon></ManageAccountsIcon>}></DashCustomNavlink>}
         </div>
     );
 };
