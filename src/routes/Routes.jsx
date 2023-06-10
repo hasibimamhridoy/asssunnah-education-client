@@ -20,11 +20,13 @@ import SendFeedback from "../pages/Dashboard/AdminPage/ManageClass/SendFeedback"
 import UpdateClass from "../pages/Dashboard/InstructorsPage/UpdateClass/UpdateClass";
 import Payment from "../pages/Dashboard/StudentPage/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/StudentPage/EnrolledClass/PaymentHistory/PaymentHistory";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -60,6 +62,7 @@ const router = createBrowserRouter([
   {
     path: "/dashboard",
     element: <DashboardLayout></DashboardLayout>,
+    errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard",
