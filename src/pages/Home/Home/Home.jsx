@@ -1,13 +1,14 @@
 import SectionTitle from "../../../components/SectionTitile/SectionTitle";
 import Classes from "../../Classes/Classes/Classes";
 import Instructors from "../../Instructors/Instructors/Instructors";
-import Banner from "../Banner/Banner/Banner";
+import BannerSlider from "../Banner/BannerSlider/BannerSlider";
+
 
 const Home = () => {
   return (
     <div className="">
       
-      <Banner></Banner>
+      <BannerSlider></BannerSlider>
       <div className="flex justify-center my-5">
         <SectionTitle clrTitle="Popular" subTitle="Classess"></SectionTitle>
       </div>
