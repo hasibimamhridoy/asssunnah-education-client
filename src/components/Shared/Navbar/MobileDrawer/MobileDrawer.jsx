@@ -81,7 +81,7 @@ export default function MobileDrawer() {
     <div>
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
-          <Button sx={{ color: "black" }} onClick={toggleDrawer(anchor, true)}>
+          <Button sx={{ color: "gray" }} onClick={toggleDrawer(anchor, true)}>
             {user ? (
               <img className="h-10 w-10 rounded-full" src={user.photoURL}></img>
             ) : (

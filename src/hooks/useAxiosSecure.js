@@ -11,8 +11,6 @@ const useAxiosSecure = () => {
   const { handleManualLogout } = useAuth(); 
   const navigate = useNavigate(); 
 
-  
-
   useEffect(() => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('access-token');

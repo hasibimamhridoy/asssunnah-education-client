@@ -20,7 +20,6 @@ function Sidebar(props) {
     setMobileOpen(!mobileOpen);
   };
 
-  console.log(mobileOpen);
   const drawer = (
     <div className="bg-gray-50 h-full font-[Roboto]">
       <img
