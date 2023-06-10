@@ -52,7 +52,7 @@ const ClassCard = ({isShowMore}) => {
   return (
     <>
       {isShowMore ? 
-      isApprovedClassess.slice(0,6).map((singleClass) => {
+      isApprovedClassess.map((singleClass) => {
         const {
           available_seats,
           class_name,
@@ -157,7 +157,7 @@ const ClassCard = ({isShowMore}) => {
       : 
       
       
-      isApprovedClassess.map((singleClass) => {
+      isApprovedClassess.slice(0,6).map((singleClass) => {
         const {
           available_seats,
           class_name,

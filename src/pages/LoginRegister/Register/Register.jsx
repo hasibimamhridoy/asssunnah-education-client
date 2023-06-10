@@ -14,7 +14,7 @@ const Register = () => {
   const location = useLocation();
   const fromPath = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
-  const [error, setError] = useState("");
+  const [customError, setError] = useState("");
   const {
     register,
     handleSubmit,
@@ -24,6 +24,8 @@ const Register = () => {
   const onSubmit = (data) => {
     const { name, email, password, ccpassword } = data;
     const image = data.picture[0];
+
+    console.log(ccpassword);
 
     if (password !== ccpassword) {
       return setError("Password Do not match");
@@ -52,9 +54,7 @@ const Register = () => {
       });
     });
   };
-  console.log(errors);
 
-  console.log(error);
 
   const handleGoogle = () => {
     handleGoogleRegister()
@@ -69,6 +69,7 @@ const Register = () => {
       });
   };
 
+  console.log(customError);
   return (
     <div className="relative flex flex-col  h-full items-center rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
       <h4 className="block font-sans text-2xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -182,12 +183,16 @@ const Register = () => {
             />
 
             <label className="before:content[' '] after:content[' '] pointer-events-none absolute left-0 -top-1.5 flex h-full w-full select-none text-[11px] font-normal leading-tight text-blue-gray-400 transition-all before:pointer-events-none before:mt-[6.5px] before:mr-1 before:box-border before:block before:h-1.5 before:w-2.5 before:rounded-tl-md before:border-t before:border-l before:border-blue-gray-200 before:transition-all after:pointer-events-none after:mt-[6.5px] after:ml-1 after:box-border after:block after:h-1.5 after:w-2.5 after:flex-grow after:rounded-tr-md after:border-t after:border-r after:border-blue-gray-200 after:transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:leading-[4.1] peer-placeholder-shown:text-blue-gray-500 peer-placeholder-shown:before:border-transparent peer-placeholder-shown:after:border-transparent peer-focus:text-[11px] peer-focus:leading-tight peer-focus:text-pink-500 peer-focus:before:border-t-2 peer-focus:before:border-l-2 peer-focus:before:!border-pink-500 peer-focus:after:border-t-2 peer-focus:after:border-r-2 peer-focus:after:!border-pink-500 peer-disabled:text-transparent peer-disabled:before:border-transparent peer-disabled:after:border-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500">
-              Password
+              Confirm Password
             </label>
           </div>
         </div>
 
-        <p className="text-red-600 text-[14px] p-1">{error}</p>
+        {errors.password !== errors.ccpassword && (
+              <p className="text-red-600 text-[14px] p-1">
+                Password Does not match
+              </p>
+            )}
 
         <div className="inline-flex items-center mt-7">
           <label
