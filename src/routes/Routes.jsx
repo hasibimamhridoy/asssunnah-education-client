@@ -9,7 +9,6 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard/Dashboard";
 import BookedItems from "../pages/Dashboard/StudentPage/BookedItems/BookedItems";
 import EnrolledClass from "../pages/Dashboard/StudentPage/EnrolledClass/EnrolledClass";
-import PaymentHistory from "../pages/Dashboard/StudentPage/PaymentHistory/PaymentHistory";
 import Support from "../pages/Support/Support";
 import AddClass from "../pages/Dashboard/InstructorsPage/AddClass/AddClass";
 import MyClassInstructor from "../pages/Dashboard/InstructorsPage/MyClassInstructor/MyClassInstructor";
@@ -20,6 +19,7 @@ import Register from "../pages/LoginRegister/Register/Register";
 import SendFeedback from "../pages/Dashboard/AdminPage/ManageClass/SendFeedback";
 import UpdateClass from "../pages/Dashboard/InstructorsPage/UpdateClass/UpdateClass";
 import Payment from "../pages/Dashboard/StudentPage/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/StudentPage/EnrolledClass/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
