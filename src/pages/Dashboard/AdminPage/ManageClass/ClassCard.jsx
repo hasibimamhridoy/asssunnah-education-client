@@ -6,6 +6,7 @@ import FeedbackIcon from "@mui/icons-material/Feedback";
 import Swal from "sweetalert2";
 import { approvedClass, deniedClass } from "../../../../api/manageClass";
 import { Link } from "react-router-dom";
+import NotFound from "../../../../components/NotFound/NotFound";
 
 const ClassCard = () => {
   const [classess, refetch] = useClassess();
@@ -49,6 +50,14 @@ const ClassCard = () => {
     });
   };
 
+  if (classess.length < 1) {
+    return (
+      <div>
+        <NotFound></NotFound>
+      </div>
+    );
+  }
+
   return (
     <>
       {classess.map((singleClass) => {
@@ -69,10 +78,7 @@ const ClassCard = () => {
             className=" mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
           >
             <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-              <img
-                src={image}
-                alt="img-blur-shadow"
-              />
+              <img src={image} alt="img-blur-shadow" />
             </div>
             <div className="px-6 mt-7 mb-3">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -102,22 +108,21 @@ const ClassCard = () => {
                 Email: {instructor_email}
               </p>
 
-             <div className="mt-4">
-             <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-              Price:  {price} Tk.
-            </span>
-            <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-              Available Seats:  {available_seats}
-            </span>
-
-            
-             </div>
+              <div className="mt-4">
+                <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  Price: {price} Tk.
+                </span>
+                <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  Available Seats: {available_seats}
+                </span>
+              </div>
             </div>
 
-            {feedback && <span className="bg-purple-700  ml-6 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-              Feedback:  {feedback}
-            </span>}
-            
+            {feedback && (
+              <span className="bg-purple-700  ml-6 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                Feedback: {feedback}
+              </span>
+            )}
 
             <div className="flex px-6 mt-3 mb-7 gap-5">
               <button
@@ -145,13 +150,13 @@ const ClassCard = () => {
                 <HighlightOffIcon></HighlightOffIcon>
               </button>
               <Link to={`/dashboard/manageUsers/sendFeedback/${_id}`}>
-              <button
-                className="select-none rounded-lg bg-yellow-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button"
-                data-ripple-light="true"
-              >
-                <FeedbackIcon></FeedbackIcon>
-              </button>
+                <button
+                  className="select-none rounded-lg bg-yellow-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  type="button"
+                  data-ripple-light="true"
+                >
+                  <FeedbackIcon></FeedbackIcon>
+                </button>
               </Link>
             </div>
           </div>

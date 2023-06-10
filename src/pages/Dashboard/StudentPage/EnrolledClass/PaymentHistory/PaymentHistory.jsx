@@ -1,10 +1,24 @@
 import React from "react";
 import PaymentHisRow from "./PaymentHisRow";
+import SectionTitle from "../../../../../components/SectionTitile/SectionTitle";
+import usePaymentHistory from "../../../../../hooks/usePaymentHistory";
+import NotFound from "../../../../../components/NotFound/NotFound";
 
 const PaymentHistory = () => {
+  const [PaymentHistory] = usePaymentHistory();
+
+  if (PaymentHistory.length < 1) {
+    return (
+      <div>
+        <SectionTitle clrTitle="Payment" subTitle="Hostory"></SectionTitle>
+        <NotFound></NotFound>
+      </div>
+    );
+  }
+
   return (
     <div className="">
-      <h1 className="text-center text-3xl">Payment history</h1>
+      <SectionTitle clrTitle="Payment" subTitle="History"></SectionTitle>
 
       <div>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

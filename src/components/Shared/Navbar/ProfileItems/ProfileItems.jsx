@@ -1,28 +1,30 @@
-
 import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import Badge from "@mui/material/Badge";
 import { Avatar } from "@mui/material";
-import { pink } from "@mui/material/colors";
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import useAuth from "../../../../hooks/useAuth";
+import useInstructor from "../../../../hooks/useInstructor";
+import useAdmin from "../../../../hooks/useAdmin";
 
 const ProfileItems = () => {
-  const {user} = useAuth()
-  // const user = false;
+  const { user } = useAuth();
+  const [isInstructor] = useInstructor();
+  const [isAdmin] = useAdmin();
 
   return (
     <div>
       <ul>
         {user ? (
           <div className="flex items-center justify-between gap-5">
-            
-            <Link to='/dashboard/bookedClass'>
-            <Badge badgeContent={4} color="primary">
-              <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
-                <AiOutlineHeart></AiOutlineHeart>
-              </li>
-            </Badge></Link>
+            {!isInstructor && !isAdmin && (
+              <Link to="/dashboard/bookedClass">
+                <Badge badgeContent={4} color="primary">
+                  <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
+                    <AiOutlineHeart></AiOutlineHeart>
+                  </li>
+                </Badge>
+              </Link>
+            )}
 
             <Link className="hidden lg:block" to="/dashboard">
               <button
@@ -34,14 +36,14 @@ const ProfileItems = () => {
             </Link>
 
             <Link className="hidden lg:block mb-1.5" to="/dashboard">
-            <Avatar sx={{ bgcolor: "#00ADEF" }}>
-                <AccountCircleIcon></AccountCircleIcon>
+              <Avatar sx={{ bgcolor: "#00ADEF" }}>
+                <img src={user?.photoURL} alt="" />
               </Avatar>
             </Link>
 
-            <Link to='/dashboard/student' className="lg:hidden mb-1">
+            <Link to="/dashboard/student" className="lg:hidden mb-1">
               <Avatar sx={{ bgcolor: "#00ADEF" }}>
-                <AccountCircleIcon></AccountCircleIcon>
+                <img src={user?.photoURL} alt="" />
               </Avatar>
             </Link>
           </div>

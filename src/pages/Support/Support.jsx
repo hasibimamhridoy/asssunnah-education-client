@@ -1,9 +1,10 @@
 import React from 'react';
+import SectionTitle from '../../components/SectionTitile/SectionTitle';
 
 const Support = () => {
     return (
         <div>
-            Support Page
+        <SectionTitle clrTitle="Support &" subTitle="Help"></SectionTitle>
         </div>
     );
 };

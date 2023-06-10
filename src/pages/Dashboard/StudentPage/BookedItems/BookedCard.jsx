@@ -5,24 +5,38 @@ import { Link } from "react-router-dom";
 import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
 import { removeToBooked } from "../../../../api/addTobooked";
 import Swal from "sweetalert2";
+import SectionTitle from "../../../../components/SectionTitile/SectionTitle";
+import NotFound from "../../../../components/NotFound/NotFound";
 
 const BookedCard = () => {
-  const [isBookedClass,refetch] = useIsBookedClassess();
+  const [isBookedClass, refetch] = useIsBookedClassess();
 
   const handleDeletedBooked = (_id) => {
-    removeToBooked(_id).then(res=>console.log(res))
-    Swal.fire({
-      position: 'top-end',
-      icon: 'success',
-      title: 'Item Deleted',
-      showConfirmButton: false,
-      timer: 1500
-    })
-    refetch()
+    removeToBooked(_id).then((res) => {
+      console.log(res)
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Item Deleted",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    });
+    
+    refetch();
   };
+
+  if (isBookedClass.length < 1) {
+    return (
+      <div>
+        <NotFound></NotFound>
+      </div>
+    );
+  }
 
   return (
     <>
+    
       {isBookedClass.map((singleClass) => {
         const {
           available_seats,
@@ -92,6 +106,7 @@ const BookedCard = () => {
           </div>
         );
       })}
+
     </>
   );
 };

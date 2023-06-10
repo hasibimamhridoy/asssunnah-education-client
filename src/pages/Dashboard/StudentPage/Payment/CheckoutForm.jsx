@@ -103,11 +103,12 @@ const CheckoutForm = ({ _id, price, payClassItem }) => {
 
                 const totalEnrolledCount = res.result;
                 const available_seats_remaining =
-                  available_seats - totalEnrolledCount;
+                  available_seats - 1;
                 countEnrolledClass(courseId, {
                   available_seats_remaining,
                   totalEnrolledCount,
                 }).then((res) => {
+
                   console.log(res);
                   console.log("available sit", available_seats);
                   console.log(

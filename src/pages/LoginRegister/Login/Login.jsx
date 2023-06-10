@@ -5,6 +5,7 @@ import GoogleIcon from "@mui/icons-material/Google";
 import Button from "../../../components/Button/Button";
 import { saveUser } from "../../../api/auth";
 import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { handleManualLogin, handleGoogleRegister } = useContext(AuthContext);
@@ -27,11 +28,21 @@ const Login = () => {
       .then((result) => {
         console.log(result.user);
         navigate(fromPath)
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Successfully Logged in',
+          showConfirmButton: false,
+          timer: 1500
+        })
       })
       .catch((err) => {
         console.log(err.message);
         if (err.message === "Firebase: Error (auth/user-not-found).") {
           setError("Please Provide Valid Email And Password");
+        }
+        if (err.message === "Firebase: Error (auth/wrong-password).") {
+          setError("Password is Wrong.Please Provide Valid Password");
         }
       });
   };
@@ -135,12 +146,14 @@ const Login = () => {
 
         <p className="flex justify-center font-sans text-sm font-light leading-normal text-inherit antialiased">
           Don't have an account?
+          <Link to='/register'>
           <a
             href="#signup"
             className="ml-1 block font-sans text-sm font-bold leading-normal text-sky-500 antialiased"
           >
             Sign up
           </a>
+          </Link>
         </p>
 
         <div className="p-6">

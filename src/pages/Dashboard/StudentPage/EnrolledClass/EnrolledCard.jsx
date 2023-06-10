@@ -1,9 +1,19 @@
 import React from "react";
 import useEnrolled from "../../../../hooks/useEnrolledClassess";
+import NotFound from "../../../../components/NotFound/NotFound";
 
 const EnrolledCard = () => {
 
-    const [Enrolled,refetch] = useEnrolled()
+    const [Enrolled] = useEnrolled()
+
+    if (Enrolled.length < 1) {
+        return (
+          <div>
+            <NotFound></NotFound>
+          </div>
+        );
+      }
+    
 
   return (
     <>

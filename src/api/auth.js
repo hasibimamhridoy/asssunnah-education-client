@@ -11,6 +11,7 @@ export const saveUser = user => {
   axios.put(`${import.meta.env.VITE_API_URL}/users/${user?.email}`, {
     email: user.email,
     name: user.displayName,
+    image : user.photoURL
   })
     .then(res => console.log(res))
 }

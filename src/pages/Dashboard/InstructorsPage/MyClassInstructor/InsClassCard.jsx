@@ -1,17 +1,21 @@
-
 import { Link } from "react-router-dom";
 import useInstructorsClassess from "../../../../hooks/useInstructorsClassess";
-import EditNoteIcon from '@mui/icons-material/EditNote';
-
+import EditNoteIcon from "@mui/icons-material/EditNote";
+import NotFound from "../../../../components/NotFound/NotFound";
 
 const InsClassCard = () => {
-    const [instructorsClassess,refetch] = useInstructorsClassess()
+  const [instructorsClassess] = useInstructorsClassess();
 
-    console.log(instructorsClassess);
-
-
+  if (instructorsClassess.length < 1) {
     return (
-        <>
+      <div>
+        <NotFound></NotFound>
+      </div>
+    );
+  }
+
+  return (
+    <>
       {instructorsClassess.map((singleClass) => {
         const {
           available_seats,
@@ -63,43 +67,38 @@ const InsClassCard = () => {
                 Email: {instructor_email}
               </p>
 
-             <div className="mt-4">
-             <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-              Price:  {price} Tk.
-            </span>
-            <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-              Available Seats:  {available_seats}
-            </span>
-
-            
-             </div>
+              <div className="mt-4">
+                <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  Price: {price} Tk.
+                </span>
+                <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                  Available Seats: {available_seats}
+                </span>
+              </div>
             </div>
 
-            {feedback && <span className="bg-purple-700  ml-6 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-              Feedback:  {feedback}
-            </span>}
-            
+            {feedback && (
+              <span className="bg-purple-700  ml-6 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                Feedback: {feedback}
+              </span>
+            )}
 
             <div className="flex px-6 mt-3 mb-7 gap-5">
-              
               <Link to={`/dashboard/instructor/update/${_id}`}>
-              <button
-                
-                className={`select-none w-full rounded-lg bg-sky-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
-                type="button"
-                data-ripple-light="true"
-              >
-                <EditNoteIcon></EditNoteIcon>
-              </button>
+                <button
+                  className={`select-none w-full rounded-lg bg-sky-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none`}
+                  type="button"
+                  data-ripple-light="true"
+                >
+                  <EditNoteIcon></EditNoteIcon>
+                </button>
               </Link>
-              
-              
             </div>
           </div>
         );
       })}
     </>
-    );
+  );
 };
 
 export default InsClassCard;

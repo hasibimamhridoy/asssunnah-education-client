@@ -27,8 +27,6 @@ const ClassCard = () => {
     });
   }, [user?.email, selectedValue]);
 
-  console.log(enrolledDisabledIds);
-
   const handleCheckboxChange = (event) => {
     if (!user) {
       return navigate("/login");
@@ -75,9 +73,9 @@ const ClassCard = () => {
         return (
           <div
             key={_id}
-            className=" mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
+            className={`mt-10 flex w-full flex-col rounded-xl ${available_seats == 0 ? 'bg-red-200' : 'bg-white'} bg-clip-border text-gray-700 shadow-md`}
           >
-            <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
+            <div className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${available_seats == 0 ? 'bg-red-100' : 'bg-white'} text-white shadow-lg shadow-blue-gray-500/40`}>
               <img src={image} alt="img-blur-shadow" />
             </div>
             <div className="px-6 mt-7 mb-3">
