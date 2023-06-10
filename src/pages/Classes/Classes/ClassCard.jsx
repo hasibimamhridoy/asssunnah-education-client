@@ -1,7 +1,11 @@
 import { useEffect, useState } from "react";
 import useIsApprovedClassess from "../../../hooks/useIsApprovedClass";
 import { Link, useNavigate } from "react-router-dom";
-import { addToBooked, isAlreadyBooked, isAlreadyEnrolled } from "../../../api/addTobooked";
+import {
+  addToBooked,
+  isAlreadyBooked,
+  isAlreadyEnrolled,
+} from "../../../api/addTobooked";
 import useAuth from "../../../hooks/useAuth";
 import useInstructor from "../../../hooks/useInstructor";
 import useAdmin from "../../../hooks/useAdmin";
@@ -73,10 +77,16 @@ const ClassCard = () => {
         return (
           <div
             key={_id}
-            className={`mt-10 flex w-full flex-col rounded-xl ${available_seats == 0 ? 'bg-red-200' : 'bg-white'} bg-clip-border text-gray-700 shadow-md`}
+            className={`mt-10 flex w-full flex-col rounded-xl ${
+              available_seats == 0 ? "bg-red-200" : "bg-white"
+            } bg-clip-border text-gray-700 shadow-md`}
           >
-            <div className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${available_seats == 0 ? 'bg-red-100' : 'bg-white'} text-white shadow-lg shadow-blue-gray-500/40`}>
-              <img src={image} alt="img-blur-shadow" />
+            <div
+              className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${
+                available_seats == 0 ? "bg-red-100" : "bg-white"
+              } text-white shadow-lg shadow-blue-gray-500/40`}
+            >
+              <img className="h-full" src={image} alt="img-blur-shadow" />
             </div>
             <div className="px-6 mt-7 mb-3">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -86,18 +96,18 @@ const ClassCard = () => {
               <p className="block font-sans text-gray-500 text-base font-light leading-relaxed text-inherit antialiased">
                 {instructor_name}
               </p>
-              <p className="block text-black text-base font-light leading-relaxed text-inherit antialiased">
-                Email: {instructor_email}
-              </p>
 
               <div className="mt-4">
-                <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                <span className="bg-green-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-1 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                   Price: {price} Tk.
                 </span>
-                <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+                <span className="bg-red-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-1 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                   Available Seats: {available_seats}
                 </span>
-                <span className="bg-yellow-400 w-fit  pb-1 pt-1 text-white text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
+              </div>
+
+              <div className="mt-2">
+                <span className="bg-yellow-400 w-fit pb-1 pt-1 text-white text-xs font-medium mr-1 px-2 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
                   Total_enrolled: {total_enrolled}
                 </span>
               </div>
@@ -105,7 +115,10 @@ const ClassCard = () => {
               <span className="flex items-center mt-5 space-x-2">
                 <input
                   disabled={
-                    disabledIds.includes(_id) || enrolledDisabledIds.includes(_id) || isAdmin || isInstructor
+                    disabledIds.includes(_id) ||
+                    enrolledDisabledIds.includes(_id) ||
+                    isAdmin ||
+                    isInstructor
                   }
                   onChange={handleCheckboxChange}
                   id="bordered-checkbox-1"
@@ -129,8 +142,10 @@ const ClassCard = () => {
                   </Link>
                 )}
 
-
-                {!disabledIds.includes(_id) && !enrolledDisabledIds.includes(_id) && <span>Add to Booked</span>}
+                {!disabledIds.includes(_id) &&
+                  !enrolledDisabledIds.includes(_id) && (
+                    <span>Add to Booked</span>
+                  )}
               </span>
             </div>
           </div>
