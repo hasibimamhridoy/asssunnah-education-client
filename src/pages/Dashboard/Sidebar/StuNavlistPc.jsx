@@ -7,16 +7,18 @@ import PaidIcon from "@mui/icons-material/Paid";
 import DashCusNavMobile from "./DashCusNavMobile";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
+import useAuth from "../../../hooks/useAuth";
 
 export const StuNavlistPc = () => {
   //TODO : GET STUDENT FORM HOOK
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const {user} = useAuth()
 
   return (
     <div>
       
-      { !isAdmin && !isInstructor && <DashCustomNavlink
+      { !isAdmin && !isInstructor && user && <DashCustomNavlink
             to="/dashboard/bookedClass"
             title="Booked Class"
             icon={
@@ -30,7 +32,7 @@ export const StuNavlistPc = () => {
             }
           ></DashCustomNavlink>}
 
-      {!isAdmin && !isInstructor && (
+      {!isAdmin && !isInstructor && user && (
           <DashCustomNavlink
             to="/dashboard/enrolledClass"
             title="Enrolled Class"
@@ -38,7 +40,7 @@ export const StuNavlistPc = () => {
           ></DashCustomNavlink>
         )}
 
-      {!isAdmin && !isInstructor && (
+      {!isAdmin && !isInstructor && user && (
           <DashCustomNavlink
             to="/dashboard/paymentHistory"
             title="Payment History"
@@ -53,10 +55,11 @@ export const StuNavlistMobile = ({ handleDrawerToggle }) => {
   //TODO : GET STUDENT FORM HOOK
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  const {user} = useAuth()
 
   return (
     <div>
-      {!isAdmin && !isInstructor &&  (
+      {!isAdmin && !isInstructor && user &&  (
         <DashCusNavMobile
           to="/dashboard/bookedClass"
           title="Booked Class"
@@ -73,7 +76,7 @@ export const StuNavlistMobile = ({ handleDrawerToggle }) => {
         ></DashCusNavMobile>
       )}
 
-      {!isAdmin && !isInstructor &&  (
+      {!isAdmin && !isInstructor && user &&  (
         <DashCusNavMobile
           to="/dashboard/enrolledClass"
           title="Enrolled Class"
@@ -82,7 +85,7 @@ export const StuNavlistMobile = ({ handleDrawerToggle }) => {
         ></DashCusNavMobile>
       )}
 
-      {!isAdmin && !isInstructor &&  (
+      {!isAdmin && !isInstructor && user &&  (
         <DashCusNavMobile
           to="/dashboard/paymentHistory"
           title="Payment History"
