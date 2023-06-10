@@ -6,6 +6,7 @@ import useAuth from "../../../../hooks/useAuth";
 import useInstructor from "../../../../hooks/useInstructor";
 import useAdmin from "../../../../hooks/useAdmin";
 import DarkMode from "../DarkMode/DarkMode";
+import MobileDrawer from "../MobileDrawer/MobileDrawer";
 
 const ProfileItems = () => {
   const { user , isDark } = useAuth();
@@ -54,6 +55,7 @@ const ProfileItems = () => {
         ) : (
           <div className="flex justify-center items-center lg:gap-10 gap-3">
             <DarkMode></DarkMode>
+            <div className="hidden lg:block">
             <Link to="/login">
             <button
               type="button"
@@ -62,6 +64,8 @@ const ProfileItems = () => {
               Login
             </button>
           </Link>
+            </div>
+          <div className="lg:hidden"><MobileDrawer></MobileDrawer></div>
           </div>
         )}
       </ul>
