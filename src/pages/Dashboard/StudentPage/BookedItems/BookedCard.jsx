@@ -1,11 +1,26 @@
 import React from "react";
 import useIsBookedClassess from "../../../../hooks/useBookedItems";
-import PaidIcon from '@mui/icons-material/Paid';
+import PaidIcon from "@mui/icons-material/Paid";
 import { Link } from "react-router-dom";
+import BookmarkRemoveIcon from "@mui/icons-material/BookmarkRemove";
+import { removeToBooked } from "../../../../api/addTobooked";
+import Swal from "sweetalert2";
 
 const BookedCard = () => {
-  const [isBookedClass] = useIsBookedClassess();
+  const [isBookedClass,refetch] = useIsBookedClassess();
   console.log(isBookedClass);
+
+  const handleDeletedBooked = (_id) => {
+    removeToBooked(_id).then(res=>console.log(res))
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Item Deleted',
+      showConfirmButton: false,
+      timer: 1500
+    })
+    refetch()
+  };
 
   return (
     <>
@@ -26,7 +41,11 @@ const BookedCard = () => {
             className=" mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
           >
             <div className="relative mx-4 -mt-6 lg:h-52 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-              <img className="object-contain" src={image} alt="img-blur-shadow" />
+              <img
+                className="object-contain"
+                src={image}
+                alt="img-blur-shadow"
+              />
             </div>
             <div className="px-6 mt-7 mb-3">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -49,19 +68,26 @@ const BookedCard = () => {
                 </span>
               </div>
 
-              <div className="mt-5">
-              <Link to={`/dashboard/student/payment/${_id}`}>
-              <button
-                className="flex select-none items-center gap-3 rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                type="button"
-                data-ripple-light="true"
-              >
-
-                <PaidIcon></PaidIcon>
-                
-                Pay Now
-              </button>
-              </Link>
+              <div className="mt-5 flex gap-3">
+                <Link to={`/dashboard/student/payment/${_id}`}>
+                  <button
+                    className="flex select-none items-center gap-3 rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                    type="button"
+                    data-ripple-light="true"
+                  >
+                    <PaidIcon></PaidIcon>
+                    Pay Now
+                  </button>
+                </Link>
+                <button
+                  onClick={() => handleDeletedBooked(_id)}
+                  className="flex select-none items-center gap-3 rounded-lg bg-red-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                  type="button"
+                  data-ripple-light="true"
+                >
+                  <BookmarkRemoveIcon></BookmarkRemoveIcon>
+                  Remove
+                </button>
               </div>
             </div>
           </div>
