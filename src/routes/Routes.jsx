@@ -19,96 +19,104 @@ import Login from "../pages/LoginRegister/Login/Login";
 import Register from "../pages/LoginRegister/Register/Register";
 import SendFeedback from "../pages/Dashboard/AdminPage/ManageClass/SendFeedback";
 import UpdateClass from "../pages/Dashboard/InstructorsPage/UpdateClass/UpdateClass";
+import Payment from "../pages/Dashboard/StudentPage/Payment/Payment";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <MainLayout></MainLayout>,
-      children:[
-        {
-            path:'/',
-            element:<Home></Home>
-        },
-        {
-            path:'/instructors',
-            element:<Instructors></Instructors>
-        },
-        {
-            path:'/Classes',
-            element:<Classes></Classes>
-        },
-        {
-            path:'/about',
-            element:<About></About>
-        },
-        {
-            path:'/contact',
-            element:<Contact></Contact>
-        },
-        {
-            path:'/login',
-            element:<Login></Login>
-        },
-        {
-            path:'/register',
-            element:<Register></Register>
-        },
-      ]
-    },
-
-    {
-        path: "/dashboard",
-        element: <DashboardLayout></DashboardLayout>,
-        children:[
-          {
-              path:'/dashboard',
-              element:<Dashboard></Dashboard>
-          },
-          {
-              path:'/dashboard/bookedClass',
-              element:<BookedItems></BookedItems>
-          },
-          {
-              path:'/dashboard/enrolledClass',
-              element:<EnrolledClass></EnrolledClass>
-          },
-          {
-              path:'/dashboard/paymentHistory',
-              element:<PaymentHistory></PaymentHistory>
-          },
-          {
-              path:'/dashboard/support',
-              element:<Support></Support>
-          },
-          {
-              path:'/dashboard/addClass',
-              element:<AddClass></AddClass>
-          },
-          {
-              path:'/dashboard/instructor/myClassess',
-              element:<MyClassInstructor></MyClassInstructor>
-          },
-          {
-              path:'/dashboard/manageClass',
-              element:<ManageClass></ManageClass>
-          },
-          {
-              path:'/dashboard/manageUsers',
-              element:<ManageUsers></ManageUsers>
-          },
-          {
-              path:`/dashboard/manageUsers/sendFeedback/:id`,
-              element:<SendFeedback></SendFeedback>
-          },
-          {
-              path:`/dashboard/instructor/update/:id`,
-              element:<UpdateClass></UpdateClass>,
-              loader: ({params})=>fetch(`http://localhost:5000/instructor/classess/${params.id}`)
-          },
-          
-        ]
+  {
+    path: "/",
+    element: <MainLayout></MainLayout>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
       },
-    
-  ]);
+      {
+        path: "/instructors",
+        element: <Instructors></Instructors>,
+      },
+      {
+        path: "/Classes",
+        element: <Classes></Classes>,
+      },
+      {
+        path: "/about",
+        element: <About></About>,
+      },
+      {
+        path: "/contact",
+        element: <Contact></Contact>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+    ],
+  },
 
-export default router
+  {
+    path: "/dashboard",
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+      },
+      {
+        path: "/dashboard/bookedClass",
+        element: <BookedItems></BookedItems>,
+      },
+      {
+        path: "/dashboard/enrolledClass",
+        element: <EnrolledClass></EnrolledClass>,
+      },
+      {
+        path: "/dashboard/paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "/dashboard/support",
+        element: <Support></Support>,
+      },
+      {
+        path: "/dashboard/addClass",
+        element: <AddClass></AddClass>,
+      },
+      {
+        path: "/dashboard/instructor/myClassess",
+        element: <MyClassInstructor></MyClassInstructor>,
+      },
+      {
+        path: "/dashboard/manageClass",
+        element: <ManageClass></ManageClass>,
+      },
+      {
+        path: "/dashboard/manageUsers",
+        element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: `/dashboard/manageUsers/sendFeedback/:id`,
+        element: <SendFeedback></SendFeedback>,
+      },
+      {
+        path: `/dashboard/instructor/update/:id`,
+        element: <UpdateClass></UpdateClass>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/instructor/classess/${params.id}`),
+      },
+      {
+        path: `/dashboard/student/payment/:id`,
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(
+            `http://localhost:5000/student/booked/classess/paymentPrice/${params.id}`
+          ),
+      },
+    ],
+  },
+]);
+
+export default router;

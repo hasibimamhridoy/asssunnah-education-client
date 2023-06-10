@@ -74,3 +74,26 @@ export const updateClass = async (classId,updateClassInformation) => {
 
 }
 
+export const countEnrolledClass = async (classId,sit_count_information) => {
+
+    const url = `${import.meta.env.VITE_API_URL}/student/enrolled/count/${classId}`
+    const response = await fetch(url, {
+        method: 'PATCH',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(sit_count_information),
+    })
+    const data = await response.json()
+    return data
+
+}
+export const getCountEnrolled = async (classId) => {
+
+    const url = `${import.meta.env.VITE_API_URL}/student/enrolled/count/${classId}`
+    const response = await fetch(url)
+    const data = await response.json()
+    return data
+
+}
+

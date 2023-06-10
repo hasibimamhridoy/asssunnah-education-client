@@ -1,6 +1,7 @@
 import React from "react";
 import useIsBookedClassess from "../../../../hooks/useBookedItems";
 import PaidIcon from '@mui/icons-material/Paid';
+import { Link } from "react-router-dom";
 
 const BookedCard = () => {
   const [isBookedClass] = useIsBookedClassess();
@@ -49,6 +50,7 @@ const BookedCard = () => {
               </div>
 
               <div className="mt-5">
+              <Link to={`/dashboard/student/payment/${_id}`}>
               <button
                 className="flex select-none items-center gap-3 rounded-lg bg-pink-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                 type="button"
@@ -59,6 +61,7 @@ const BookedCard = () => {
                 
                 Pay Now
               </button>
+              </Link>
               </div>
             </div>
           </div>
