@@ -8,7 +8,6 @@ import Swal from "sweetalert2";
 
 const BookedCard = () => {
   const [isBookedClass,refetch] = useIsBookedClassess();
-  console.log(isBookedClass);
 
   const handleDeletedBooked = (_id) => {
     removeToBooked(_id).then(res=>console.log(res))
