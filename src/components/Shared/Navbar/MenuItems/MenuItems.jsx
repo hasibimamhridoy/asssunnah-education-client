@@ -12,6 +12,7 @@ const MenuItems = () => {
         <CustomNavlink to="/about" title="About"></CustomNavlink>
         <CustomNavlink to="/contact" title="Contact"></CustomNavlink>
       </div>
+      
     </ul>
   );
 };

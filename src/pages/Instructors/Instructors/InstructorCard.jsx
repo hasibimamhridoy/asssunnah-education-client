@@ -1,8 +1,10 @@
 
+import useAuth from "../../../hooks/useAuth";
 import useShowInstructors from "../../../hooks/useShowInstructors";
 
 const InstructorCard = () => {
   const [ShowInstructors] = useShowInstructors();
+  const {isDark} = useAuth()
 
   return (
     <>
@@ -12,7 +14,7 @@ const InstructorCard = () => {
         return (
           <div
             key={_id}
-            className=" mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
+            className={`${isDark ? 'bg-gray-900 border transition duration-700 text-gray-300' : 'bg-white' } mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md`}
           >
             <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
               <img src={image} alt="img-blur-shadow" />

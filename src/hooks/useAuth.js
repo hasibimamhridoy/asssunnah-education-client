@@ -12,6 +12,8 @@ const useAuth = () => {
         user,
         loading,
         handleManualLogout,
+        handleDarkMode,
+        isDark
       } = useContext(AuthContext);
       
     return {
@@ -23,6 +25,8 @@ const useAuth = () => {
         user,
         loading,
         handleManualLogout,
+        handleDarkMode,
+        isDark
       };
 
 };

@@ -19,6 +19,7 @@ export const AuthContext = createContext(null);
 const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [isDark,setIsDark] = useState(false)
 
   const handleManualRegister = (email, pass) => {
     setLoading(true);
@@ -73,6 +74,12 @@ useEffect(() => {
   }
 }, [])
 
+const handleDarkMode = ()=>{
+  setIsDark(!isDark)
+}
+
+// console.log(isDark);
+
   const authInfo = {
     user,
     loading,
@@ -80,7 +87,9 @@ useEffect(() => {
     handleGoogleRegister,
     handleManualLogin,
     handleManualLogout,
-    handleUpdateProfile
+    handleUpdateProfile,
+    handleDarkMode,
+    isDark,
   };
   return (
     <div>

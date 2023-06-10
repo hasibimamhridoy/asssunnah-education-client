@@ -5,21 +5,25 @@ import { Avatar } from "@mui/material";
 import useAuth from "../../../../hooks/useAuth";
 import useInstructor from "../../../../hooks/useInstructor";
 import useAdmin from "../../../../hooks/useAdmin";
+import DarkMode from "../DarkMode/DarkMode";
 
 const ProfileItems = () => {
-  const { user } = useAuth();
+  const { user , isDark } = useAuth();
   const [isInstructor] = useInstructor();
   const [isAdmin] = useAdmin();
 
   return (
     <div>
-      <ul>
+      <ul className="">
         {user ? (
           <div className="flex items-center justify-between gap-5">
+            
+            <DarkMode></DarkMode>
+
             {!isInstructor && !isAdmin && (
               <Link to="/dashboard/bookedClass">
                 <Badge badgeContent={4} color="primary">
-                  <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
+                  <li className={`${isDark ? 'text-gray-300' : "text-gray-800"} text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer`}>
                     <AiOutlineHeart></AiOutlineHeart>
                   </li>
                 </Badge>
@@ -48,14 +52,17 @@ const ProfileItems = () => {
             </Link>
           </div>
         ) : (
-          <Link to="/login">
+          <div className="flex justify-center items-center lg:gap-10 gap-3">
+            <DarkMode></DarkMode>
+            <Link to="/login">
             <button
               type="button"
-              className="text-white bg-[#00ADEF] rounded-full text-sm px-3 py-1 text-center mr-2 mb-2"
+              className="text-white bg-[#00ADEF] rounded-full text-sm px-3 py-1 text-center mr-2 mb-0.5"
             >
               Login
             </button>
           </Link>
+          </div>
         )}
       </ul>
     </div>
