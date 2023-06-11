@@ -4,49 +4,57 @@ import { imageUpload } from "../../../../api/utils";
 import Button from "../../../../components/Button/Button";
 import useAuth from "../../../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+import SectionTitle from "../../../../components/SectionTitile/SectionTitle";
 
 const AddClass = () => {
   const { user } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleAddClass = (e) => {
     e.preventDefault();
-    const form = e.target
-    const class_name = form.class_name.value
-    const instructor_name = user?.displayName
-    const instructor_email = user?.email
-    const price = parseFloat(form.price.value)
-    const available_seats = parseFloat(form.seats.value)
-    const status = 'pending'
-    const feedback = ''
-    const total_enrolled = 0
-    const image = e.target.image.files[0]
+    const form = e.target;
+    const class_name = form.class_name.value;
+    const instructor_name = user?.displayName;
+    const instructor_email = user?.email;
+    const price = parseFloat(form.price.value);
+    const available_seats = parseFloat(form.seats.value);
+    const status = "pending";
+    const feedback = "";
+    const total_enrolled = 0;
+    const image = e.target.image.files[0];
 
-    imageUpload(image)
-    .then(res=>{
-        const image = res.data.url
-        const addClassInformation = {class_name,instructor_name,instructor_email,price,available_seats,status,feedback,image,total_enrolled}
-        addClass(addClassInformation)
-        .then(res =>{
-            console.log(res);
-            Swal.fire({
-              position: 'top-end',
-              icon: 'success',
-              title: 'Class Addedd',
-              showConfirmButton: false,
-              timer: 1500
-            })
-            form.reset()
-            navigate('/dashboard/instructor/myClassess')
-        })
-
-    })
-
+    imageUpload(image).then((res) => {
+      const image = res.data.url;
+      const addClassInformation = {
+        class_name,
+        instructor_name,
+        instructor_email,
+        price,
+        available_seats,
+        status,
+        feedback,
+        image,
+        total_enrolled,
+      };
+      addClass(addClassInformation).then((res) => {
+        console.log(res);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Class Addedd",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        form.reset();
+        navigate("/dashboard/instructor/myClassess");
+      });
+    });
   };
 
   return (
     <div>
-      This is add class page
+      <SectionTitle clrTitle="Add Class" subTitle="Page"></SectionTitle>
+
       <section className="bg-white dark:bg-gray-900">
         <div className="py-8 px-4 mx-auto max-w-2xl lg:py-16">
           <h2 className="mb-4 text-xl font-bold text-gray-900 dark:text-white">
@@ -112,7 +120,7 @@ const AddClass = () => {
                   Class Banner Image
                 </label>
                 <input
-                name='image'
+                  name="image"
                   className="block w-full text-s p-2 text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                   id="file_input"
                   type="file"

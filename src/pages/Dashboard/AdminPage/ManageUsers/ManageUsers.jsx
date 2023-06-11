@@ -1,13 +1,14 @@
 
+import SectionTitle from "../../../../components/SectionTitile/SectionTitle";
 import UserRow from "./UserRow";
 
 const ManageUsers = () => {
 
   return (
     <div className="">
-      <h1 className="text-center text-3xl">Manage Users</h1>
+      <SectionTitle clrTitle="Manege Class" subTitle="Page"></SectionTitle>
 
-      <div>
+      <div className="mt-10">
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">

@@ -35,7 +35,7 @@ const Navlist = ({ handleDrawerToggle }) => {
       <AdminNavlistMobile handleDrawerToggle = {handleDrawerToggle}></AdminNavlistMobile>
 
       <DashCusNavMobile
-        to="/dashboard/support"
+        to="/contact"
         title="Support & Report"
         icon={<HelpIcon></HelpIcon>}
         handleDrawerToggle={handleDrawerToggle}
@@ -64,7 +64,7 @@ const Navlist = ({ handleDrawerToggle }) => {
       <AdminNavlistPC></AdminNavlistPC>
 
       <DashCustomNavlink
-        to="/dashboard/support"
+        to="/contact"
         title="Support & Report"
         icon={<HelpIcon></HelpIcon>}
       ></DashCustomNavlink>
