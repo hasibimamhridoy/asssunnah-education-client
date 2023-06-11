@@ -22,7 +22,9 @@ const CheckoutForm = ({ _id, price, payClassItem }) => {
 
   console.log(price);
 
-  const { courseId, available_seats } = payClassItem;
+  const { courseId, available_seats ,class_name } = payClassItem;
+
+  console.log(class_name);
 
   useEffect(() => {
     if (price > 0) {
@@ -86,6 +88,7 @@ const CheckoutForm = ({ _id, price, payClassItem }) => {
         email: user?.email,
         transactionId: paymentIntent.id,
         price,
+        class_name,
         date: new Date(),
       };
       axiosSecure.post(`/payments/success/${_id}`, payment).then((res) => {

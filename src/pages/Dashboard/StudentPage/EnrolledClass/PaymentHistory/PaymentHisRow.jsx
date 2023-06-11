@@ -5,6 +5,8 @@ import NotFound from "../../../../../components/NotFound/NotFound";
 const PaymentHisRow = () => {
   const [PaymentHistory] = usePaymentHistory();
 
+  console.log(PaymentHistory);
+
   if (PaymentHistory.length < 1) {
     return (
       <div>
@@ -18,7 +20,7 @@ const PaymentHisRow = () => {
       {PaymentHistory.map((payment) => {
         return (
           <tr key={payment._id}>
-            <td className="px-6 py-4">{payment.email}</td>
+            <td className="px-6 py-4">{payment.class_name}</td>
             <td className="px-6 py-4">{payment.transactionId}</td>
             <td className="px-6 py-4">{payment.date}</td>
           </tr>

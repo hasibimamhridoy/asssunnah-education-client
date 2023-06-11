@@ -1,18 +1,19 @@
 import React from "react";
 import useAuth from "../../hooks/useAuth";
+import SectionTitle from "../../components/SectionTitile/SectionTitle";
 
 const Contact = () => {
   const { isDark } = useAuth();
   return (
     <div>
+        <div className="flex justify-center lg:mt-16 lg:mb-10 mb-6 mt-10">
+        <SectionTitle clrTitle="Contact" subTitle="Page"></SectionTitle>
+      </div>
       <section className={`${isDark ? " text-white" : " text-gray-900"}`}>
-        <div className="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
-          <h2 className="mb-4 text-4xl tracking-tight font-extrabold text-center  dark:text-white">
-            Contact Us
-          </h2>
+        <div className="px-4 mx-auto max-w-screen-md">
+          
           <p className="mb-8 lg:mb-16 font-light text-center text-gray-500 dark:text-gray-400 sm:text-xl">
-            Got a technical issue? Want to send feedback about a beta feature?
-            Need details about our Business plan? Let us know.
+            Have you any query? Let us know.
           </p>
           <htmlForm action="#" className="space-y-8">
             <div>
