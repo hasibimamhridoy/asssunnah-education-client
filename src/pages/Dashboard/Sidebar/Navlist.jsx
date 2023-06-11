@@ -24,7 +24,7 @@ const Navlist = ({ handleDrawerToggle }) => {
   const itemsListMobile = (
     <List>
       <DashCusNavMobile
-        to="/dashboard"
+        to="/"
         title="Home"
         icon={<DashboardIcon></DashboardIcon>}
         handleDrawerToggle={handleDrawerToggle}

@@ -7,12 +7,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Navlist from "./Navlist";
 import useAuth from "../../../hooks/useAuth";
 
-
-
 const drawerWidth = 300;
 
 function Sidebar(props) {
-  const {user} = useAuth()
+  const { user } = useAuth();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -44,9 +42,20 @@ function Sidebar(props) {
         aria-label="open drawer"
         edge="start"
         onClick={handleDrawerToggle}
-        sx={{ mr: 2, display: { sm: "none" }, zIndex: "100", color: "#ffffff",borderBottom:"2px solid #20c997",margin:"10px",position:"absolute" }}
+        sx={{
+          mr: 2,
+          display: { sm: "none" },
+          zIndex: "100",
+          color: "#ffffff",
+          borderBottom: "",
+          margin: "10px",
+          position: "absolute",
+        }}
       >
-        <MenuIcon />
+        <span className="text-black">
+          <MenuIcon />
+        </span>
+        
       </IconButton>
       <Box sx={{ display: "flex" }}>
         <Box
