@@ -1,7 +1,11 @@
+import useAuth from "../../../../hooks/useAuth";
 
 const Footer = () => {
+
+  const {isDark} = useAuth()
+
   return (
-    <footer className="bg-gray-50 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left">
+    <footer className={`${isDark ? "bg-slate-900 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left" : "bg-gray-50 text-center text-neutral-600 dark:bg-neutral-600 dark:text-neutral-200 lg:text-left"}`}>
       <div className="flex items-center justify-center border-b-2 border-neutral-200 p-6 dark:border-neutral-500 lg:justify-between">
         <div className="mr-12 hidden lg:block">
           <span>Get connected with us on social networks:</span>
@@ -54,7 +58,7 @@ const Footer = () => {
       </div>
 
       <div className="mx-6 py-10 text-center md:text-left">
-        <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="">
             <h6 className="mb-4 flex items-center justify-center font-semibold uppercase md:justify-start">
               <svg
@@ -98,6 +102,7 @@ const Footer = () => {
             </p>
             
           </div>
+
           <div>
             <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
               Contact
@@ -157,10 +162,26 @@ const Footer = () => {
               + 23234654343
             </p>
           </div>
+
+          <div className="">
+            <h6 className="mb-4 flex justify-center font-semibold uppercase md:justify-start">
+             Policy
+            </h6>
+            <p className="mb-4">
+              <a href="#!" className="text-neutral-600 dark:text-neutral-200">
+                Privacy Policy
+              </a>
+            </p>
+            <p className="mb-4">
+              <a href="#!" className="text-neutral-600 dark:text-neutral-200">
+                Terms & Condition
+              </a>
+            </p>
+          </div>
         </div>
       </div>
 
-      <div className="bg-gray-100 space-x-3 p-6 text-center dark:bg-neutral-700">
+      <div className={`${isDark ? "bg-slate-900 space-x-3 p-6 text-center dark:bg-neutral-700" : "bg-gray-100 space-x-3 p-6 text-center dark:bg-neutral-700"}`}>
         <span>© 2023 Copyright:</span>
         <a
           className="font-semibold text-neutral-600 dark:text-neutral-400"

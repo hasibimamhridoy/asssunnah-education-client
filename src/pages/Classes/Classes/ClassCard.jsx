@@ -49,6 +49,7 @@ const ClassCard = ({isShowMore}) => {
     });
   };
 
+  console.log(isDark);
   return (
     <>
       {isShowMore ? 
@@ -80,12 +81,12 @@ const ClassCard = ({isShowMore}) => {
         return (
           <div
             key={_id}
-            className={`${available_seats == 0 ? "bg-red-300" : "bg-white"} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-400'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md `}
+            className={`${available_seats == 0 ? "bg-red-300" : ""} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-400'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md `}
           >
             <div
               className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${
-                available_seats == 0 ? "bg-red-100" : "bg-white"
-              } text-white shadow-lg shadow-blue-gray-500/40`}
+                available_seats == 0 ? "bg-red-100" : "bg-green-400"
+              } text-white shadow-lg shadow-blue-gray-500/40 bg-green-400`}
             >
               <img className="h-full" src={image} alt="img-blur-shadow" />
             </div>
@@ -185,7 +186,7 @@ const ClassCard = ({isShowMore}) => {
         return (
           <div
             key={_id}
-            className={`${available_seats == 0 ? "bg-red-300" : "bg-white"} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-400'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md `}
+            className={`${available_seats == 0 ? "bg-red-300" : ""} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-400'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md `}
           >
             <div
               className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${
