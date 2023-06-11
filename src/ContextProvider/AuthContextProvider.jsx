@@ -49,6 +49,10 @@ const AuthContextProvider = ({ children }) => {
     });
 }
 
+const handleDarkMode = ()=>{
+  setIsDark(!isDark)
+}
+
 useEffect(() => {
   const unsubscribe = onAuthStateChanged(auth, currentUser => {
       setUser(currentUser);
@@ -62,8 +66,10 @@ useEffect(() => {
               localStorage.setItem('access-token', data.data.token)
               setLoading(false);
           })
+          
       }
       else{
+        setLoading(false);
           localStorage.removeItem('access-token')
       }
 
@@ -74,9 +80,7 @@ useEffect(() => {
   }
 }, [])
 
-const handleDarkMode = ()=>{
-  setIsDark(!isDark)
-}
+
 
 // console.log(isDark);
 

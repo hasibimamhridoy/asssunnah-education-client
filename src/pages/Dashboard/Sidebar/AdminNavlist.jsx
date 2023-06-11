@@ -19,11 +19,11 @@ export const AdminNavlistPC = () => {
 };
 
 export const AdminNavlistMobile = ({handleDrawerToggle}) => {
-    const admin = false
+    const [isAdmin] = useAdmin()
     return (
         <div>
-            {admin && <DashCusNavMobile to='/dashboard/manageClass' title='Manage Class' icon={<LocalLibraryIcon></LocalLibraryIcon>}></DashCusNavMobile>}
-            {admin && <DashCusNavMobile to='/dashboard/manageUsers' title='Manage Users' icon={<ManageAccountsIcon></ManageAccountsIcon>}></DashCusNavMobile>}
+            {isAdmin && <DashCusNavMobile handleDrawerToggle = {handleDrawerToggle} to='/dashboard/manageClass' title='Manage Class' icon={<LocalLibraryIcon></LocalLibraryIcon>}></DashCusNavMobile>}
+            {isAdmin && <DashCusNavMobile handleDrawerToggle = {handleDrawerToggle} to='/dashboard/manageUsers' title='Manage Users' icon={<ManageAccountsIcon></ManageAccountsIcon>}></DashCusNavMobile>}
         </div>
     );
 };

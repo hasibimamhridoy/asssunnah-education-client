@@ -21,6 +21,10 @@ import UpdateClass from "../pages/Dashboard/InstructorsPage/UpdateClass/UpdateCl
 import Payment from "../pages/Dashboard/StudentPage/Payment/Payment";
 import PaymentHistory from "../pages/Dashboard/StudentPage/EnrolledClass/PaymentHistory/PaymentHistory";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import StudentRoute from "./StudentRoute";
 
 const router = createBrowserRouter([
   {
@@ -61,7 +65,7 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: <DashboardLayout></DashboardLayout>,
+    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
     errorElement:<ErrorPage></ErrorPage>,
     children: [
       {
@@ -70,49 +74,49 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/bookedClass",
-        element: <BookedItems></BookedItems>,
+        element: <StudentRoute><BookedItems></BookedItems></StudentRoute>,
       },
       {
         path: "/dashboard/enrolledClass",
-        element: <EnrolledClass></EnrolledClass>,
+        element: <StudentRoute><EnrolledClass></EnrolledClass></StudentRoute>,
       },
       {
         path: "/dashboard/paymentHistory",
-        element: <PaymentHistory></PaymentHistory>,
+        element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>,
       },
       {
         path: "/dashboard/support",
-        element: <Support></Support>,
+        element: <PrivateRoute><Support></Support></PrivateRoute>,
       },
       {
         path: "/dashboard/addClass",
-        element: <AddClass></AddClass>,
+        element: <InstructorRoute><AddClass></AddClass></InstructorRoute>,
       },
       {
         path: "/dashboard/instructor/myClassess",
-        element: <MyClassInstructor></MyClassInstructor>,
+        element: <InstructorRoute><MyClassInstructor></MyClassInstructor></InstructorRoute>,
       },
       {
         path: "/dashboard/manageClass",
-        element: <ManageClass></ManageClass>,
+        element: <AdminRoute><ManageClass></ManageClass></AdminRoute>,
       },
       {
         path: "/dashboard/manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
       },
       {
         path: `/dashboard/manageUsers/sendFeedback/:id`,
-        element: <SendFeedback></SendFeedback>,
+        element: <AdminRoute><SendFeedback></SendFeedback></AdminRoute>,
       },
       {
         path: `/dashboard/instructor/update/:id`,
-        element: <UpdateClass></UpdateClass>,
+        element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/instructor/classess/${params.id}`),
       },
       {
         path: `/dashboard/student/payment/:id`,
-        element: <Payment></Payment>,
+        element: <StudentRoute><Payment></Payment></StudentRoute>,
         loader: ({ params }) =>
           fetch(
             `http://localhost:5000/student/booked/classess/paymentPrice/${params.id}`

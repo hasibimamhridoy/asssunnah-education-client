@@ -1,5 +1,5 @@
 
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "../../components/Shared/Navbar/Navbar/Navbar";
 import Footer from "../../components/Shared/Footer/Footer/Footer";
 import useAuth from "../../hooks/useAuth";
@@ -12,6 +12,7 @@ const MainLayout = () => {
 
   return (
     <div className={`${isDark ? 'bg-gray-900 transition duration-700' : 'bg-white transition duration-700'} lg:px-32 px-2`}>
+      <ScrollRestoration></ScrollRestoration>
       <div className="navbar">
         <Navbar></Navbar>
       </div>

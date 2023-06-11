@@ -31,8 +31,8 @@ const Navlist = ({ handleDrawerToggle }) => {
       ></DashCusNavMobile>
       
       <StuNavlistMobile handleDrawerToggle={handleDrawerToggle}></StuNavlistMobile>
-      <InstructorNavlistMobile></InstructorNavlistMobile>
-      <AdminNavlistMobile></AdminNavlistMobile>
+      <InstructorNavlistMobile handleDrawerToggle={handleDrawerToggle}></InstructorNavlistMobile>
+      <AdminNavlistMobile handleDrawerToggle = {handleDrawerToggle}></AdminNavlistMobile>
 
       <DashCusNavMobile
         to="/dashboard/support"

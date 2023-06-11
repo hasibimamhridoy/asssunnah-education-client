@@ -19,8 +19,8 @@ export const InstructorNavlistMobile = ({handleDrawerToggle}) => {
     const instructore = false
     return (
         <div>
-            {instructore && <DashCusNavMobile to='/dashboard/addClass' title='Add Class' icon={<AddCircleIcon></AddCircleIcon>}></DashCusNavMobile>}
-            {instructore && <DashCusNavMobile to='/dashboard/instructor/myClassess' title='My Classess' icon={<VideoLibraryIcon></VideoLibraryIcon>}></DashCusNavMobile>}
+            {instructore && <DashCusNavMobile handleDrawerToggle={handleDrawerToggle} to='/dashboard/addClass' title='Add Class' icon={<AddCircleIcon></AddCircleIcon>}></DashCusNavMobile>}
+            {instructore && <DashCusNavMobile handleDrawerToggle={handleDrawerToggle} to='/dashboard/instructor/myClassess' title='My Classess' icon={<VideoLibraryIcon></VideoLibraryIcon>}></DashCusNavMobile>}
         </div>
     );
 };
