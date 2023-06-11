@@ -75,7 +75,10 @@ const UserRow = () => {
               {user.name}
             </th>
             <td className="px-6 py-4">{user.email}</td>
-            <td className="px-6 py-4">{user.role}</td>
+            <td className="px-6 py-4">
+              {`${user.role !== 'admin' && user.role !== 'instructor' ? "student" : `${user.role}` }`}
+              </td>
+            {/* { && <td className="px-6 py-4">Student</td>} */}
             <td className="px-6 py-4">
               <button
                 disabled={user?.role === "instructor"}
