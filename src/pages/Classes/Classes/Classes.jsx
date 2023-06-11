@@ -1,17 +1,37 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ClassCard from "./ClassCard";
-import { Bounce, Fade, Hinge, JackInTheBox, Roll, Slide, Zoom } from "react-awesome-reveal";
+import {
+  Bounce,
+  Fade,
+  Hinge,
+  JackInTheBox,
+  Roll,
+  Slide,
+  Zoom,
+} from "react-awesome-reveal";
+import SectionTitle from "../../../components/SectionTitile/SectionTitle";
+import { useLocation } from "react-router-dom";
 
 const Classes = () => {
   const [isShowMore, setIsShowMore] = useState(false);
-
+  const loc = useLocation();
+  const [isClassPath, setIsClassPath] = useState(false);
+  useEffect(() => {
+    if (loc.pathname === "/classes") {
+      setIsClassPath(true);
+    }
+  }, [loc.pathname]);
   return (
     <>
-      <Slide cascade triggerOnce = {true} duration = {2000}>
-          <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+      <div className="flex justify-center lg:mt-16 lg:mb-10 mb-6 mt-10">
+        <SectionTitle clrTitle={`${isClassPath ? "All" : "Popular"}`} subTitle="Classess"></SectionTitle>
+      </div>
+
+      <Slide cascade triggerOnce={true} duration={2000}>
+        <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <ClassCard isShowMore={isShowMore}></ClassCard>
-          </div>
-        </Slide>
+        </div>
+      </Slide>
 
       <div className="flex justify-center items-center my-10">
         <button

@@ -1,13 +1,26 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import InstructorCard from "./InstructorCard";
 import { Fade, Slide } from "react-awesome-reveal";
+import SectionTitle from "../../../components/SectionTitile/SectionTitle";
+import { useLocation } from "react-router-dom";
 
 const Instructors = () => {
   const [isShowMore, setIsShowMore] = useState(false);
+  const loc = useLocation();
+  const [isInsTructorPath, setIsInstructorPath] = useState(false);
+  useEffect(() => {
+    if (loc.pathname === "/instructors") {
+      setIsInstructorPath(true);
+    }
+  }, [loc.pathname]);
+
   return (
     <div>
-      
-      <Fade cascade damping={0.5}  duration={2000}>
+      <div className="flex justify-center lg:mt-16 lg:mb-10 mb-6 mt-10">
+        <SectionTitle clrTitle={`${isInsTructorPath ? "All" : "Popular"}`} subTitle="Instructors"></SectionTitle>
+      </div>
+
+      <Fade cascade damping={0.5} duration={2000}>
         <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
           <InstructorCard isShowMore={isShowMore}></InstructorCard>
         </div>
