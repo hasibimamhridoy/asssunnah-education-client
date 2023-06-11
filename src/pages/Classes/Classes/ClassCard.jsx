@@ -20,7 +20,7 @@ const ClassCard = ({isShowMore}) => {
   const [isAdmin] = useAdmin();
 
 
-  console.log(isShowMore);
+  // console.log(isShowMore);
 
   useEffect(() => {
     isAlreadyBooked(user?.email).then((res) => {
@@ -81,7 +81,7 @@ const ClassCard = ({isShowMore}) => {
         return (
           <div
             key={_id}
-            className={`${available_seats == 0 ? "bg-red-300" : ""} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-400'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md `}
+            className={`${available_seats == 0 ? "bg-red-300" : ""} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-200'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border shadow-md `}
           >
             <div
               className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${
@@ -186,7 +186,7 @@ const ClassCard = ({isShowMore}) => {
         return (
           <div
             key={_id}
-            className={`${available_seats == 0 ? "bg-red-300" : ""} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-400'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border text-gray-700 shadow-md `}
+            className={`${available_seats == 0 ? "bg-red-300" : ""} ${isDark && 'bg-gray-900 border transition duration-700 text-gray-200'} mt-10 flex w-full flex-col rounded-xl  bg-clip-border shadow-md `}
           >
             <div
               className={`relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border ${

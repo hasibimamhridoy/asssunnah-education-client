@@ -16,7 +16,7 @@ const InstructorCard = ({ isShowMore }) => {
                 key={_id}
                 className={`${
                   isDark
-                    ? "bg-slate-900 border transition duration-700 text-gray-300"
+                    ? "bg-slate-900 border transition duration-700 text-white"
                     : "bg-white"
                 } mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md`}
               >
@@ -42,7 +42,7 @@ const InstructorCard = ({ isShowMore }) => {
                 key={_id}
                 className={`${
                   isDark
-                    ? "bg-slate-900 border transition duration-700 text-gray-300"
+                    ? "bg-slate-900 border transition duration-700 text-white"
                     : "bg-white"
                 } mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md`}
               >

@@ -72,7 +72,7 @@ const Subcribe = () => {
             id="default-email"
             className={`${
               isDark
-                ? "block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-slate-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                ? "block w-full p-4 pl-10 text-sm text-white border border-gray-300 rounded-lg bg-slate-900 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 : "block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             }`}
             placeholder="Enter your email here..."
