@@ -51,7 +51,7 @@ export default function MobileDrawer() {
             </li>
           </Link>
 
-          <Link to="/classess">
+          <Link to="/classes">
             <li className="bg-gray-100 text-center p-2 mx-2 rounded-sm mt-3">
               Classess
             </li>

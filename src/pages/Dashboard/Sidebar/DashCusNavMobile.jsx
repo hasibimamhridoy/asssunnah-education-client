@@ -1,7 +1,7 @@
 import { ListItem, ListItemButton, ListItemText } from "@mui/material";
 import { NavLink } from "react-router-dom";
 
-const DashCusNavMobile = ({ to, title, icon: Icon, handleDrawerToggle }) => {
+const DashCusNavMobile = ({ to, title, icon: Icon, handleDrawerToggle,handleManualLogout }) => {
   return (
     <NavLink
       to={to}

@@ -13,7 +13,7 @@ const SectionTitle = ({ clrTitle, subTitle }) => {
         <mark className="px-2 text-white bg-sky-500 rounded dark:bg-blue-500">
           {clrTitle}
         </mark>
-        <span className={`${isDark ? 'text-white' : 'text-gray-900'} ml-2`}>{subTitle}</span>
+        <span className={`${isDark ? 'text-gray-500' : 'text-gray-900'} ml-2`}>{subTitle}</span>
       </h1>
     </div>
    </Fade>

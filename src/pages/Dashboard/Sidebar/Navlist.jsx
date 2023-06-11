@@ -18,8 +18,7 @@ import { StuNavlistMobile, StuNavlistPc } from "./StuNavlistPc";
 import useAuth from "../../../hooks/useAuth";
 
 const Navlist = ({ handleDrawerToggle }) => {
-
-  const {handleManualLogout} = useAuth()
+  const { handleManualLogout } = useAuth();
 
   const itemsListMobile = (
     <List>
@@ -29,10 +28,16 @@ const Navlist = ({ handleDrawerToggle }) => {
         icon={<DashboardIcon></DashboardIcon>}
         handleDrawerToggle={handleDrawerToggle}
       ></DashCusNavMobile>
-      
-      <StuNavlistMobile handleDrawerToggle={handleDrawerToggle}></StuNavlistMobile>
-      <InstructorNavlistMobile handleDrawerToggle={handleDrawerToggle}></InstructorNavlistMobile>
-      <AdminNavlistMobile handleDrawerToggle = {handleDrawerToggle}></AdminNavlistMobile>
+
+      <StuNavlistMobile
+        handleDrawerToggle={handleDrawerToggle}
+      ></StuNavlistMobile>
+      <InstructorNavlistMobile
+        handleDrawerToggle={handleDrawerToggle}
+      ></InstructorNavlistMobile>
+      <AdminNavlistMobile
+        handleDrawerToggle={handleDrawerToggle}
+      ></AdminNavlistMobile>
 
       <DashCusNavMobile
         to="/contact"
@@ -41,18 +46,18 @@ const Navlist = ({ handleDrawerToggle }) => {
         handleDrawerToggle={handleDrawerToggle}
       ></DashCusNavMobile>
 
-      <DashCusNavMobile
-        to="/dashboard/logout"
-        title="Logout"
-        icon={<LogoutIcon></LogoutIcon>}
-        handleDrawerToggle={handleDrawerToggle}
-      ></DashCusNavMobile>
+      <div onClick={handleManualLogout}>
+        <DashCusNavMobile
+          title="Logout"
+          icon={<LogoutIcon></LogoutIcon>}
+          handleDrawerToggle={handleDrawerToggle}
+        ></DashCusNavMobile>
+      </div>
     </List>
   );
 
   const itemsListPC = (
     <List>
-      
       <DashCustomNavlink
         to="/"
         title="Home"
@@ -68,12 +73,13 @@ const Navlist = ({ handleDrawerToggle }) => {
         title="Support & Report"
         icon={<HelpIcon></HelpIcon>}
       ></DashCustomNavlink>
-      
-      <div onClick={handleManualLogout}><DashCustomNavlink
-        
-        title="Logout"
-        icon={<LogoutIcon></LogoutIcon>}
-      ></DashCustomNavlink></div>
+
+      <div onClick={handleManualLogout}>
+        <DashCustomNavlink
+          title="Logout"
+          icon={<LogoutIcon></LogoutIcon>}
+        ></DashCustomNavlink>
+      </div>
     </List>
   );
 

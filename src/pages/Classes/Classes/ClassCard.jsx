@@ -88,7 +88,7 @@ const ClassCard = ({isShowMore}) => {
                 available_seats == 0 ? "bg-red-100" : "bg-green-400"
               } text-white shadow-lg shadow-blue-gray-500/40 bg-green-400`}
             >
-              <img className="h-full" src={image} alt="img-blur-shadow" />
+              <img className="h-full w-full" src={image} alt="img-blur-shadow" />
             </div>
             <div className="px-6 mt-7 mb-3">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -193,7 +193,7 @@ const ClassCard = ({isShowMore}) => {
                 available_seats == 0 ? "bg-red-100" : "bg-white"
               } text-white shadow-lg shadow-blue-gray-500/40`}
             >
-              <img className="h-full" src={image} alt="img-blur-shadow" />
+              <img className="h-full w-full" src={image} alt="img-blur-shadow" />
             </div>
             <div className="px-6 mt-7 mb-3">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">

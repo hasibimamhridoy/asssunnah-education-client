@@ -58,6 +58,7 @@ export const StuNavlistMobile = ({ handleDrawerToggle }) => {
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const {user} = useAuth()
+  const [isBookedClass] = useIsBookedClassess()
 
   return (
     <div>
@@ -66,8 +67,8 @@ export const StuNavlistMobile = ({ handleDrawerToggle }) => {
           to="/dashboard/bookedClass"
           title="Booked Class"
           icon={
-            <Link to="/dashboard/favorites">
-              <Badge badgeContent={4} color="primary">
+            <Link to="/dashboard/bookedClass">
+              <Badge badgeContent={isBookedClass.length} color="primary">
                 <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
                   <AiOutlineHeart></AiOutlineHeart>
                 </li>
