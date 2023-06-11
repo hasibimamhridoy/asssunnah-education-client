@@ -3,9 +3,11 @@ import { addClass } from "../../../../api/manageClass";
 import { imageUpload } from "../../../../api/utils";
 import Button from "../../../../components/Button/Button";
 import useAuth from "../../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
 const AddClass = () => {
   const { user } = useAuth();
+  const navigate = useNavigate()
 
   const handleAddClass = (e) => {
     e.preventDefault();
@@ -34,6 +36,8 @@ const AddClass = () => {
               showConfirmButton: false,
               timer: 1500
             })
+            form.reset()
+            navigate('/dashboard/instructor/myClassess')
         })
 
     })

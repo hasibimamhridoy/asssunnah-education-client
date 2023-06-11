@@ -175,7 +175,7 @@ const UpdateClass = () => {
             </div>
 
             <div className="flex w-full justify-center mt-5">
-              <Button type="submit" title="Add Class"></Button>
+              <Button type="submit" title="Update Class"></Button>
             </div>
           </form>
         </div>

@@ -8,12 +8,14 @@ import DashCusNavMobile from "./DashCusNavMobile";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
 import useAuth from "../../../hooks/useAuth";
+import useIsBookedClassess from "../../../hooks/useBookedItems";
 
 export const StuNavlistPc = () => {
   //TODO : GET STUDENT FORM HOOK
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
   const {user} = useAuth()
+  const [isBookedClass] = useIsBookedClassess()
 
   return (
     <div>
@@ -23,7 +25,7 @@ export const StuNavlistPc = () => {
             title="Booked Class"
             icon={
               <Link to="/dashboard/favorites">
-                <Badge badgeContent={4} color="primary">
+                <Badge badgeContent={isBookedClass.length} color="primary">
                   <li className="text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer">
                     <AiOutlineHeart></AiOutlineHeart>
                   </li>

@@ -30,7 +30,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout></MainLayout>,
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -65,8 +65,12 @@ const router = createBrowserRouter([
 
   {
     path: "/dashboard",
-    element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    errorElement:<ErrorPage></ErrorPage>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/dashboard",
@@ -74,52 +78,110 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard/bookedClass",
-        element: <StudentRoute><BookedItems></BookedItems></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <BookedItems></BookedItems>
+          </StudentRoute>
+        ),
       },
       {
         path: "/dashboard/enrolledClass",
-        element: <StudentRoute><EnrolledClass></EnrolledClass></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <EnrolledClass></EnrolledClass>
+          </StudentRoute>
+        ),
       },
       {
         path: "/dashboard/paymentHistory",
-        element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <PaymentHistory></PaymentHistory>
+          </StudentRoute>
+        ),
       },
       {
         path: "/dashboard/support",
-        element: <PrivateRoute><Support></Support></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Support></Support>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/dashboard/addClass",
-        element: <InstructorRoute><AddClass></AddClass></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
       },
       {
         path: "/dashboard/instructor/myClassess",
-        element: <InstructorRoute><MyClassInstructor></MyClassInstructor></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <MyClassInstructor></MyClassInstructor>
+          </InstructorRoute>
+        ),
       },
       {
         path: "/dashboard/manageClass",
-        element: <AdminRoute><ManageClass></ManageClass></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageClass></ManageClass>
+          </AdminRoute>
+        ),
       },
       {
         path: "/dashboard/manageUsers",
-        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
       {
         path: `/dashboard/manageUsers/sendFeedback/:id`,
-        element: <AdminRoute><SendFeedback></SendFeedback></AdminRoute>,
+        element: (
+          <AdminRoute>
+            <SendFeedback></SendFeedback>
+          </AdminRoute>
+        ),
       },
       {
         path: `/dashboard/instructor/update/:id`,
-        element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>,
+        element: (
+          <InstructorRoute>
+            <UpdateClass></UpdateClass>
+          </InstructorRoute>
+        ),
         loader: ({ params }) =>
-          fetch(`https://ass-sunnah-server-site.vercel.app/${params.id}`),
+          fetch(
+            `${import.meta.env.VITE_API_URL}/instructor/classess/${params.id}`,
+            {
+              headers: {
+                authorization: `bearer ${localStorage.getItem("access-token")}`,
+              },
+            }
+          ),
       },
       {
         path: `/dashboard/student/payment/:id`,
-        element: <StudentRoute><Payment></Payment></StudentRoute>,
+        element: (
+          <StudentRoute>
+            <Payment></Payment>
+          </StudentRoute>
+        ),
         loader: ({ params }) =>
           fetch(
-            `https://ass-sunnah-server-site.vercel.app/student/booked/classess/paymentPrice/${params.id}`
+            `${
+              import.meta.env.VITE_API_URL
+            }/student/booked/classess/paymentPrice/${params.id}`,
+            {
+              headers: {
+                authorization: `bearer ${localStorage.getItem("access-token")}`,
+              },
+            }
           ),
       },
     ],

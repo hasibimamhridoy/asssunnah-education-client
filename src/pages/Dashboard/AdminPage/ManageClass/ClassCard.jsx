@@ -5,11 +5,12 @@ import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import FeedbackIcon from "@mui/icons-material/Feedback";
 import Swal from "sweetalert2";
 import { approvedClass, deniedClass } from "../../../../api/manageClass";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NotFound from "../../../../components/NotFound/NotFound";
 
 const ClassCard = () => {
   const [classess, refetch] = useClassess();
+  const navigate = useNavigate()
 
   const handleApproved = (id) => {
     Swal.fire({
@@ -46,6 +47,7 @@ const ClassCard = () => {
           refetch();
         });
         Swal.fire("denied Class!", "Class has been denied.", "success");
+        navigate(`/dashboard/manageUsers/sendFeedback/${id}`)
       }
     });
   };
@@ -78,7 +80,7 @@ const ClassCard = () => {
             className=" mt-10 flex w-full flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md"
           >
             <div className="relative mx-4 -mt-6 h-56 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
-              <img src={image} alt="img-blur-shadow" />
+              <img className="w-full" src={image} alt="img-blur-shadow" />
             </div>
             <div className="px-6 mt-7 mb-3">
               <h5 className="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
@@ -149,7 +151,9 @@ const ClassCard = () => {
               >
                 <HighlightOffIcon></HighlightOffIcon>
               </button>
-              <Link to={`/dashboard/manageUsers/sendFeedback/${_id}`}>
+              {status === 'denied' && <Link to={`/dashboard/manageUsers/sendFeedback/${_id}`}>
+
+                
                 <button
                   className="select-none rounded-lg bg-yellow-500 py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-pink-500/20 transition-all hover:shadow-lg hover:shadow-pink-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                   type="button"
@@ -157,7 +161,7 @@ const ClassCard = () => {
                 >
                   <FeedbackIcon></FeedbackIcon>
                 </button>
-              </Link>
+              </Link>}
             </div>
           </div>
         );

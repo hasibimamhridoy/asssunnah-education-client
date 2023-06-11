@@ -21,9 +21,10 @@ const BookedCard = () => {
         showConfirmButton: false,
         timer: 1500,
       });
+      refetch();
     });
     
-    refetch();
+    
   };
 
   if (isBookedClass.length < 1) {
@@ -55,7 +56,7 @@ const BookedCard = () => {
           >
             <div className="relative mx-4 -mt-6 lg:h-52 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white shadow-lg shadow-blue-gray-500/40">
               <img
-                className="object-contain"
+                className="object-contain w-full"
                 src={image}
                 alt="img-blur-shadow"
               />

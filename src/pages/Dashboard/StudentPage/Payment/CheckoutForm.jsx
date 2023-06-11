@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect } from "react";
 import { useState } from "react";
-// import './CheckoutForm.css'
+import "./CheckoutForm.css";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
 import useAuth from "../../../../hooks/useAuth";
 import {
@@ -102,13 +102,11 @@ const CheckoutForm = ({ _id, price, payClassItem }) => {
                 console.log(res);
 
                 const totalEnrolledCount = res.result;
-                const available_seats_remaining =
-                  available_seats - 1;
+                const available_seats_remaining = available_seats - 1;
                 countEnrolledClass(courseId, {
                   available_seats_remaining,
                   totalEnrolledCount,
                 }).then((res) => {
-
                   console.log(res);
                   console.log("available sit", available_seats);
                   console.log(
@@ -150,13 +148,26 @@ const CheckoutForm = ({ _id, price, payClassItem }) => {
         >
           Pay
         </button>
+
+        <div className="mt-6">
+          {/* {cardError && <p className="text-red-600">{cardError}</p>} */}
+
+          {cardError && (
+            <div
+              className="p-4 mb-4 w-2/3 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+              role="alert"
+            >
+              <span className="font-medium">Error! </span>{cardError}
+            </div>
+          )}
+          {transactionId && (
+            <div className="p-4 mb-4 w-2/4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+            <span className="font-medium">Payment Success</span> 
+            Your Transection id is:  {transactionId}
+          </div>
+          )}
+        </div>
       </form>
-      {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
-      {transactionId && (
-        <p className="text-green-500">
-          Transaction complete with transactionId: {transactionId}
-        </p>
-      )}
     </>
   );
 };

@@ -9,10 +9,10 @@ import "swiper/css/navigation";
 
 import "./BannerSlider.css";
 
-import bannerOne from "../../../../assets/banner/1.svg"
-import bannerTwo from "../../../../assets/banner/2.svg"
-import bannerThree from "../../../../assets/banner/3.svg"
-import bannerFour from "../../../../assets/banner/4.svg"
+import bannerOne from "../../../../assets/banner/1.png"
+import bannerTwo from "../../../../assets/banner/2.png"
+import bannerThree from "../../../../assets/banner/3.png"
+import bannerFour from "../../../../assets/banner/4.png"
 
 // import required modules
 import { Pagination, Navigation } from "swiper";

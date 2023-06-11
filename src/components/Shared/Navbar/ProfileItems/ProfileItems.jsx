@@ -7,11 +7,13 @@ import useInstructor from "../../../../hooks/useInstructor";
 import useAdmin from "../../../../hooks/useAdmin";
 import DarkMode from "../DarkMode/DarkMode";
 import MobileDrawer from "../MobileDrawer/MobileDrawer";
+import useIsBookedClassess from "../../../../hooks/useBookedItems";
 
 const ProfileItems = () => {
   const { user , isDark } = useAuth();
   const [isInstructor] = useInstructor();
   const [isAdmin] = useAdmin();
+  const [isBookedClass] = useIsBookedClassess()
 
   return (
     <div>
@@ -23,7 +25,7 @@ const ProfileItems = () => {
 
             {!isInstructor && !isAdmin && (
               <Link to="/dashboard/bookedClass">
-                <Badge badgeContent={4} color="primary">
+                <Badge badgeContent={isBookedClass.length} color="primary">
                   <li className={`${isDark ? 'text-gray-300' : "text-gray-800"} text-2xl hover:text-[#00ADEF] hover:transition hover:duration-500 cursor-pointer`}>
                     <AiOutlineHeart></AiOutlineHeart>
                   </li>

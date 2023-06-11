@@ -13,7 +13,7 @@ const Home = () => {
         <SectionTitle clrTitle="Popular" subTitle="Classess"></SectionTitle>
       </div>
       <Classes></Classes>
-      <div className="flex justify-center lg:mt-28 lg:mb-10 mb-6 mt-10">
+      <div className="flex justify-center lg:mt-16 lg:mb-10 mb-6 mt-10">
         <SectionTitle clrTitle="Popular" subTitle="Instructors"></SectionTitle>
       </div>
       <Instructors></Instructors>

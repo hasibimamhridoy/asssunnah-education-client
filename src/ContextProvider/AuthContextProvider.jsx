@@ -60,7 +60,7 @@ useEffect(() => {
 
       // get and set token
       if(currentUser){
-          axios.post('https://ass-sunnah-server-site.vercel.app/jwt', {email: currentUser.email})
+          axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {email: currentUser.email})
           .then(data =>{
               console.log(data.data.token)
               localStorage.setItem('access-token', data.data.token)
