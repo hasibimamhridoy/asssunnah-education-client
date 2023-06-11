@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from './useAuth';
 
 const axiosSecure = axios.create({
-  baseURL: 'http://localhost:5000', 
+  baseURL: 'https://ass-sunnah-server-site.vercel.app', 
 });
 
 const useAxiosSecure = () => {
@@ -15,7 +15,7 @@ const useAxiosSecure = () => {
     axiosSecure.interceptors.request.use((config) => {
       const token = localStorage.getItem('access-token');
       if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
+        config.headers.Authorization = `bearer ${token}`;
       }
       return config;
     });

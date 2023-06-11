@@ -112,14 +112,14 @@ const router = createBrowserRouter([
         path: `/dashboard/instructor/update/:id`,
         element: <InstructorRoute><UpdateClass></UpdateClass></InstructorRoute>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/instructor/classess/${params.id}`),
+          fetch(`https://ass-sunnah-server-site.vercel.app/${params.id}`),
       },
       {
         path: `/dashboard/student/payment/:id`,
         element: <StudentRoute><Payment></Payment></StudentRoute>,
         loader: ({ params }) =>
           fetch(
-            `http://localhost:5000/student/booked/classess/paymentPrice/${params.id}`
+            `https://ass-sunnah-server-site.vercel.app/student/booked/classess/paymentPrice/${params.id}`
           ),
       },
     ],

@@ -4,7 +4,8 @@ export const addClass = async addClassInformation => {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify(addClassInformation),
     })
@@ -19,7 +20,8 @@ export const approvedClass = async classId => {
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify({status:'approved'}),
     })
@@ -34,7 +36,8 @@ export const deniedClass = async classId => {
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify({status:'denied'}),
     })
@@ -49,7 +52,8 @@ export const sendFeedback = async (classId,feedback) => {
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify({feedback:feedback}),
     })
@@ -65,7 +69,8 @@ export const updateClass = async (classId,updateClassInformation) => {
     const response = await fetch(url, {
         method: 'PUT',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify(updateClassInformation),
     })
@@ -80,7 +85,8 @@ export const countEnrolledClass = async (classId,sit_count_information) => {
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify(sit_count_information),
     })

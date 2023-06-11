@@ -1,5 +1,4 @@
-import axios from "axios"
-import useAuth from "../hooks/useAuth"
+
 
 // Task Two - makeInstructor
 
@@ -9,7 +8,8 @@ export const makeInstructor = async user => {
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify({ role: "instructor" }),
     })
@@ -17,13 +17,15 @@ export const makeInstructor = async user => {
     return data
 
 }
+
 export const makeAdmin = async email => {
 
     const url = `${import.meta.env.VITE_API_URL}/users/${email}`
     const response = await fetch(url, {
         method: 'PATCH',
         headers: {
-            "Content-Type": "application/json"
+            "Content-Type": "application/json",
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
         },
         body: JSON.stringify({ role: "admin" }),
     })
@@ -37,6 +39,9 @@ export const deleteUser = async _id => {
     const url = `${import.meta.env.VITE_API_URL}/users/${_id}`
     const response = await fetch(url, {
         method: 'DELETE',
+        headers: {
+            'authorization': `bearer ${localStorage.getItem('access-token')}`
+        },
         
     })
     const data = await response.json()

@@ -7,16 +7,16 @@ import useAdmin from '../hooks/useAdmin';
 
 const StudentRoute = ({children}) => {
     const { user, loading } = useAuth();
-    const [isInstructor, isInstructorLoading] = useInstructor();
-    const [isAdmin, isAdminLoading] = useAdmin();
+    // const [isInstructor, isInstructorLoading] = useInstructor();
+    // const [isAdmin, isAdminLoading] = useAdmin();
 
     const location = useLocation();
 
-    if(loading || isAdminLoading || isInstructorLoading){
+    if(loading ){
         return <Spinner></Spinner>
     }
 
-    if (user && !isInstructor && !isAdmin) {
+    if (user ) {
         return children;
     }
     return <Navigate to="/" state={{from: location}} replace></Navigate>
