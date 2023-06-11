@@ -4,7 +4,7 @@ import NotFound from "../../../../components/NotFound/NotFound";
 
 const EnrolledCard = () => {
 
-    const [Enrolled] = useEnrolled()
+    const [Enrolled,refetch] = useEnrolled()
 
     if (Enrolled.length < 1) {
         return (
@@ -13,6 +13,8 @@ const EnrolledCard = () => {
           </div>
         );
       }
+
+      refetch()
     
 
   return (

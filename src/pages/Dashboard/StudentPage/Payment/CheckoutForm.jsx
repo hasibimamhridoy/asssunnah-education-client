@@ -8,6 +8,7 @@ import {
   countEnrolledClass,
   getCountEnrolled,
 } from "../../../../api/manageClass";
+import { Navigate } from "react-router-dom";
 
 const CheckoutForm = ({ _id, price, payClassItem }) => {
   const stripe = useStripe();
@@ -164,6 +165,7 @@ const CheckoutForm = ({ _id, price, payClassItem }) => {
             <div className="p-4 mb-4 w-2/4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
             <span className="font-medium">Payment Success</span> 
             Your Transection id is:  {transactionId}
+            <Navigate to='/dashboard/enrolledClass'></Navigate>
           </div>
           )}
         </div>

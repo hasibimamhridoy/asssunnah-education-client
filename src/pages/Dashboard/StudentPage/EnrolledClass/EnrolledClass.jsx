@@ -6,7 +6,7 @@ import SectionTitle from "../../../../components/SectionTitile/SectionTitle";
 const EnrolledClass = () => {
   return (
     <div>
-      <SectionTitle clrTitle='Enrolled' subTitle='Student'></SectionTitle>
+      <SectionTitle clrTitle='Enrolled' subTitle='Classess'></SectionTitle>
       <div className="grid grid-cols-1 w-full gap-5 lg:grid-cols-2">
         <EnrolledCard></EnrolledCard>
       </div>
