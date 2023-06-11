@@ -1,8 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../pages/Dashboard/Sidebar/Sidebar";
-import { Outlet, ScrollRestoration } from "react-router-dom";
+import { Outlet, ScrollRestoration, useLocation } from "react-router-dom";
 
 const DashboardLayout = () => {
+  const loc = useLocation();
+  useEffect(() => {
+    if (loc.pathname == "/login") {
+      document.title = "AssSunnah - LOGIN";
+    } else if (loc.pathname === "/") {
+      document.title = "AssSunnah - Home";
+    } else {
+      document.title = `AssSunnah ${loc.pathname.toUpperCase()}`.replace(
+        "/",
+        "-"
+      );
+    }
+  }, [loc.pathname, loc.state]);
   return (
     <div className="flex">
       <ScrollRestoration></ScrollRestoration>
