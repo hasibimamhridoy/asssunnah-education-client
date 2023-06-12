@@ -22,3 +22,34 @@ Hosted in Netlify -> [Ass Sunnah School](https://ass-sunnah.netlify.app/)
 - Admin can approved , denied , and give feedback for that specific class. If denied then the feedback button will visible otherwise it will be hidden.
 - Admin can manage class,users,instructor can manege add class,update class etc and the last one student can enrolled,booked ,and deleted booked items.
 - The Popular classes section is sort by highst enrolled student.
+
+
+## Used packages and technology
+
+## Used packages
+
+- Material UI
+- Stripe
+- Axios
+- Axios
+- Firebase
+- React Awesome Reaveal
+- React Marque
+- React Hook forms
+- React Icons
+- Sweetalert2
+- Swiper Js
+- Tanstack Query
+
+## Used Technology 
+
+## Front-end 
+- HTML
+- Tailwind Css
+- Java Script
+- React Js
+
+## Back-end 
+
+- Express Js
+- Mongo DB
