@@ -31,7 +31,6 @@ Hosted in Netlify -> [Ass Sunnah School](https://ass-sunnah.netlify.app/)
 - Material UI
 - Stripe
 - Axios
-- Axios
 - Firebase
 - React Awesome Reaveal
 - React Marque
