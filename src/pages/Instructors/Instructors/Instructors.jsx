@@ -25,7 +25,7 @@ const Instructors = () => {
           <InstructorCard isShowMore={isShowMore}></InstructorCard>
         </div>
       </Fade>
-      <div className="flex justify-center items-center my-10">
+      {isInsTructorPath && <div className="flex justify-center items-center my-10">
         <button
           onClick={() => setIsShowMore(!isShowMore)}
           type="button"
@@ -33,7 +33,7 @@ const Instructors = () => {
         >
           Show More ...
         </button>
-      </div>
+      </div>}
     </div>
   );
 };

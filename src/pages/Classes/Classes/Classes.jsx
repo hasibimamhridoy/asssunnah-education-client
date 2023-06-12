@@ -20,7 +20,9 @@ const Classes = () => {
     if (loc.pathname === "/classes") {
       setIsClassPath(true);
     }
+    
   }, [loc.pathname]);
+
   return (
     <>
       <div className="flex justify-center lg:mt-16 lg:mb-10 mb-6 mt-10">
@@ -33,7 +35,7 @@ const Classes = () => {
         </div>
       </Slide>
 
-      <div className="flex justify-center items-center my-10">
+      {isClassPath && <div className="flex justify-center items-center my-10">
         <button
           onClick={() => setIsShowMore(!isShowMore)}
           type="button"
@@ -41,7 +43,7 @@ const Classes = () => {
         >
           Show More ...
         </button>
-      </div>
+      </div>}
     </>
   );
 };

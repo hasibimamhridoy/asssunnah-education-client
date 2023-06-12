@@ -45,6 +45,11 @@ export default function MobileDrawer() {
       <div>
         <ul>
           
+          <Link to="/">
+            <li className="bg-gray-100 text-center p-2 mx-2 rounded-sm mt-3">
+              Home
+            </li>
+          </Link>
           <Link to="/instructors">
             <li className="bg-gray-100 text-center p-2 mx-2 rounded-sm mt-3">
               Instructors
